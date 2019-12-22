@@ -10,5 +10,5 @@ This repository will contain the code and models for the following paper:
 [Ting Yu](https://scholar.google.com/citations?user=_lswGcYAAAAJ&hl=en),
 [Alexander Hauptmann](https://www.cs.cmu.edu/~alex/)
 
-You can find more information at our [Project Page](https://next.cs.cmu.edu/multiverse/).\
+You can find more information at our [Project Page](https://next.cs.cmu.edu/multiverse/).
 

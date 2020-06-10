@@ -1,6 +1,6 @@
 # Multiverse
 
-This repository will contain the code and models for the following paper:
+This repository contains the code and models for the following paper:
 
 
 **[The Garden of Forking Paths: Towards Multi-Future Trajectory Prediction](https://arxiv.org/abs/1912.06445)** \
@@ -12,3 +12,4 @@ This repository will contain the code and models for the following paper:
 
 You can find more information at our [Project Page](https://next.cs.cmu.edu/multiverse/).
 
+# The ForkingPaths Dataset

@@ -42,9 +42,9 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 + Download links: [Google Drive](https://drive.google.com/file/d/1yESCQuIdiDNanUSX0qDyzbBRe_AeZB5a/view?usp=sharing) ([sha256sum](https://next.cs.cmu.edu/multiverse/dataset/ForkingPaths_dataset_v1.sha256sum.txt))
 
-+ The dataset includes 3000 1920x1080 videos (750 human-annotated trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth. More notes and instructions about the dataset can be found [here](forking_paths_dataset/README.MD).
++ The dataset includes 3000 1920x1080 videos (750 human-annotated trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth. More notes and instructions about the dataset can be found [here](forking_paths_dataset/README.md).
 
-+ Instructions of how to add more human annotations, edit the scenes, and recreate from real-world videos can be found [here](forking_paths_dataset/README.MD).
++ Instructions of how to add more human annotations, edit the scenes, and recreate from real-world videos can be found [here](forking_paths_dataset/README.md).
 
 <div align="center">
   <div style="">

@@ -34,7 +34,7 @@ If you find this code useful in your research then please cite
   </p>
 </div>
 
-This paper studies the problem of predicting the distribution over multiple possible future paths of people as they move through various visual scenes. We make two main contributions. The first contribution is a new dataset called the Forking Paths Dataset, created in a realistic 3D simulator, which is based on real world trajectory data, and then extrapolated by human annotators to achieve different latent goals. This provides the **first benchmark** for quantitative evaluation of the models to predict multi-future trajectories.
+This paper studies the problem of predicting the distribution over multiple possible future paths of people as they move through various visual scenes. We make two main contributions. The first contribution is a new dataset called the **Forking Paths Dataset**, created in a realistic 3D simulator, which is based on real world trajectory data, and then extrapolated by human annotators to achieve different latent goals. This provides the **first benchmark** for quantitative evaluation of the models to predict **multi-future trajectories**.
 
 # The Forking Paths Dataset
 
@@ -48,8 +48,8 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 <div align="center">
   <div style="">
-      <img src="images/multi_view_v2.gif" height="235px" />
-      <img src="images/multi_view2_v2.gif" height="235px" />
+      <img src="images/multi_view_v2.gif" height="240px" />
+      <img src="images/multi_view2_v2.gif" height="240px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
     <a href="http://www.youtube.com/watch?feature=player_embedded&v=RW45YQHxIhk" target="_blank">Demo Video</a>
@@ -68,7 +68,15 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 Our second contribution is a new model to generate multiple plausible future trajectories, which contains novel designs of using multi-scale location encodings and convolutional RNNs over graphs. We refer to our model as Multiverse.
 
-
 Coming soon.
+
+## Dependencies
++ Python 2/3; TensorFlow-GPU >= 1.10.0
+
+## Pretrained Models
+
+## Testing
+
+## Training new models
 
 

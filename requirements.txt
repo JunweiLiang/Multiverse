@@ -1,0 +1,5 @@
+tensorflow-gpu
+tqdm
+matplotlib
+numpy
+opencv-python

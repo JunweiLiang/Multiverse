@@ -2,7 +2,6 @@
 
 This repository contains the code and models for the following paper:
 
-
 **[The Garden of Forking Paths: Towards Multi-Future Trajectory Prediction](https://arxiv.org/abs/1912.06445)** \
 [Junwei Liang](https://www.cs.cmu.edu/~junweil/),
 [Lu Jiang](http://www.lujiang.info/),
@@ -12,4 +11,64 @@ This repository contains the code and models for the following paper:
 
 You can find more information at our [Project Page](https://next.cs.cmu.edu/multiverse/).
 
-# The ForkingPaths Dataset
+If you find this code useful in your research then please cite
+
+```
+@inproceedings{liang2020garden,
+  title={The garden of forking paths: Towards multi-future trajectory prediction},
+  author={Liang, Junwei and Jiang, Lu and Murphy, Kevin and Yu, Ting and Hauptmann, Alexander},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  month = {June},
+  year={2020}
+}
+```
+
+# Introduction
+
+<div align="center">
+  <div style="">
+      <img src="images/prob.gif" height="300px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.2em;">
+    Problem Description: Multi-future Trajectory Prediction
+  </p>
+</div>
+
+This paper studies the problem of predicting the distribution over multiple possible future paths of people as they move through various visual scenes. We make two main contributions. The first contribution is a new dataset called the Forking Paths Dataset, created in a realistic 3D simulator, which is based on real world trajectory data, and then extrapolated by human annotators to achieve different latent goals. This provides the **first benchmark** for quantitative evaluation of the models to predict multi-future trajectories.
+
+# The Forking Paths Dataset
+
++ Current dataset version: v1
+
++ Download links: [Google Drive](https://drive.google.com/file/d/1yESCQuIdiDNanUSX0qDyzbBRe_AeZB5a/view?usp=sharing) ([sha256sum](https://next.cs.cmu.edu/multiverse/dataset/ForkingPaths_dataset_v1.sha256sum.txt))
+
++ The dataset includes 3000 1920x1080 videos (750 human-annotated trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth. More notes and instructions about the dataset can be found [here](forking_paths_dataset/README.MD).
+
++ Instructions of how to add more human annotations, edit the scenes, and recreate from real-world videos can be found [here](forking_paths_dataset/README.MD).
+
+<div align="center">
+  <div style="">
+      <img src="images/multi_view_v2.gif" height="235px" />
+      <img src="images/multi_view2_v2.gif" height="235px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.2em;">
+    <a href="http://www.youtube.com/watch?feature=player_embedded&v=RW45YQHxIhk" target="_blank">Demo Video</a>
+  </p>
+</div>
+
+
+# The Multiverse Model
+
+<div align="center">
+  <div style="">
+      <img src="images/cvpr2020_model.png" height="300px" />
+  </div>
+  <br/>
+</div>
+
+Our second contribution is a new model to generate multiple plausible future trajectories, which contains novel designs of using multi-scale location encodings and convolutional RNNs over graphs. We refer to our model as Multiverse.
+
+
+Coming soon.
+
+

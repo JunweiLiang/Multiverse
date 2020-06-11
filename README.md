@@ -15,9 +15,9 @@ If you find this code useful in your research then please cite
 
 ```
 @inproceedings{liang2020garden,
-  title={The garden of forking paths: Towards multi-future trajectory prediction},
+  title={The Garden of Forking Paths: Towards Multi-Future Trajectory Prediction},
   author={Liang, Junwei and Jiang, Lu and Murphy, Kevin and Yu, Ting and Hauptmann, Alexander},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  booktitle={The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   month = {June},
   year={2020}
 }

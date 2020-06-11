@@ -44,12 +44,12 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 + The dataset includes 3000 1920x1080 videos (750 human-annotated trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth. More notes and instructions about the dataset can be found [here](forking_paths_dataset/README.md).
 
-+ Instructions of how to add more human annotations, edit the scenes, and recreate from real-world videos can be found [here](forking_paths_dataset/README.md).
++ Instructions of how to add more human annotations, edit the scenes, recreate from real-world videos, or just simply play with CARLA simulator, can be found [here](forking_paths_dataset/README.md).
 
 <div align="center">
   <div style="">
-      <img src="images/multi_view_v2.gif" height="250px" />
-      <img src="images/multi_view2_v2.gif" height="250px" />
+      <img src="images/multi_view_v2.gif" height="255px" />
+      <img src="images/multi_view2_v2.gif" height="255px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
     <a href="http://www.youtube.com/watch?feature=player_embedded&v=RW45YQHxIhk" target="_blank">Demo Video</a>
@@ -79,4 +79,6 @@ Coming soon.
 
 ## Training new models
 
+## Acknowledgments
+The Forking Paths Dataset is created based on the [CARLA Simulator](carla.org) and [Unreal Engine 4](https://www.unrealengine.com/en-US/).
 

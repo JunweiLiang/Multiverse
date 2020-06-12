@@ -86,10 +86,11 @@ In this section, I will show you how to use our code and [CARLA](https://carla.o
   </p>
 </div>
 
-+ **Some basics**.
+### Some basics
 In order to simulate a **scenario** (in the code it is referred to as "moment") where a number of "Person" and "Vehicle" agents navigate in the scene for a period of time, the simulator needs to know exactly how to control each agent at each time frame. For "Person" agent the control means the direction and velocity. For "Vehicle" agent, we teleport them to the desire location and remove the physics simulation for simplicity (As of CARLA 0.9.6, it is not trivial to accurately convert direction and velocity to vehicle controls like throttling and steering. And teleporting looks smooth enough if we do it at every time frame.) So basically we need: 1. the **static map**, 2. the **full control records** of every agents at all time frames, for the simulation to run. To get human-annotated multi-future trajectories, the idea is to first recreate a plausible scenario that resembles the real-world, and then ask a human annotator to "drop-in" or "embody" a "Person" agent, and control such an agent to continue to a destination. The control record of the human annotator along with other agents' are saved as a JSON file. We leave multi-human simultaneous annotation to future work.
 
-+ **Step 1**, prepare and test the CARLA simulator. Get the CARLA simulator from [here](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) and our edited maps from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz) or by:
+### Step 1, prepare and test the CARLA simulator
+Get the CARLA simulator from [here](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) and our edited maps from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz) or by:
 ```
 $ wget http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz
 $ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz
@@ -114,11 +115,14 @@ $ python code/spectator.py --port 23015  --change_map Town05_actev
 Both windows should be switched to a new map. For full keyboard and mouse controls of the spectator window, see [here](code/spectator.py#L136). Now, press Ctr+C to exit both terminals.
 
 
-+ **Step 2**, to add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section). Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
+### Step 2, get recreated scenarios
+To add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section). Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
+
 ```
 $ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz
 # sha256sum: f25a02f3a362c8e05823f17b20e5c12224be0559849f46ae3143abc1828f8051
 ```
+
 We'll need to make two file lists since we use two different maps.
 ```
 $ tar -zxvf multiverse_scenarios_v1.tgz
@@ -127,40 +131,47 @@ $ ls $PWD/0* > actev.lst
 $ ls $PWD/eth.fixed.json $PWD/zara01.fixed.json $PWD/hotel.fixed.json > ethucy.lst
 ```
 
-+ **Step 3**, start the CARLA server in the background:
+### Step 3, human annotation
+Start the CARLA server in the background:
 ```
 $ cd CARLA_0.9.6/; DISPLAY= ./CarlaUE4.sh -opengl -carla-port=23015
 ```
+
 You can change the port to others. Now, open another terminal and:
 ```
 $ python code/annotate_carla.py multiverse_scenarios_v1/actev.lst actev.junwei.json \
 actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 \
 --pred_length 26 --is_actev --port 23015
 ```
+
 Now a pygame window should pop up and there will be instructions in the window for annotators. For ETHUCY, change to `ethucy.lst` and `--video_fps 25.0` and remove `--is_actev`.
 
 
-+ **Step 4**, now that we have the annotations, we could record videos!
+### Step 4, now that we have the annotations, we could record videos!
 Suppose you have a couple of annotators and each of them generates a JSON file from Step 3, we need a file list of these JSONs and their annotator ID:
 ```
 $ echo "$PWD/actev.junwei.json 27" >> actev_annotations.lst
 ...
 ```
+
 Now, make a single "moment" record JSON:
 ```
 $ python code/gen_moment_from_annotation.py multiverse_scenarios_v1/actev.lst \
 actev_annotations.lst actev.final.json --video_fps 30.0 --annotation_fps 2.5 \
 --obs_length 12 --pred_length 26
 ```
+
 Now, before recording the final videos, we should clean the data by manually looking at all the annotated trajectories and remove outliers. Start the server if it is not running:
 ```
 $ cd CARLA_0.9.6/; DISPLAY= ./CarlaUE4.sh -opengl -carla-port=23015
 ```
+
 Start the "moment" editor client:
 ```
 $ python code/moment_editor.py actev.final.json actev.final.checked.json \
  --video_fps 30.0 --is_actev --annotation_fps 2.5 --port 23015
 ```
+
 Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev.final.checked.json`
 Now we can start recording videos and get ground truth annotations including bounding boxes and scene semantic segmentation.
 ```
@@ -168,4 +179,5 @@ $ python code/record_annotation.py --is_actev --res 1920x1080 --video_fps 30.0 \
  --annotation_fps 2.5 --obs_length 12 --pred_length 26 actev.final.checked.json \
  new_dataset --port 23015
 ```
+
 For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation. The output folder should have the same structure as our released dataset.

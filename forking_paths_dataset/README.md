@@ -1,7 +1,7 @@
 
 # The Forking Paths Dataset
 
-Download the dataset according to [this](../README.md#the-forking-paths-dataset).
+Download the dataset according to [this](../README.md#the-forking-paths-dataset). For CARLA/UE4 veterans, here are the resources listed in the rest of the sections for downloading: \[[CARLA_0.9.6_compiled](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) from [CARLA](https://github.com/carla-simulator/carla/releases/tag/0.9.6)\], \[[Our_edited_maps](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz)\]
 
 ## Annotations
 This dataset is for multi-future trajectory prediction. The common experiment setting for trajectory prediction is to let the model observe a period of time (3.2 seconds) and then predict the future 4.8 seconds. We set the observation time period in this dataset to be 4.8 seconds and the future period to be up to 10.4 seconds. For videos of the same scenario (we call it a "moment" in the code), the observation period would be the same and the future period would be different. See Section 4 in the paper for more details.
@@ -86,4 +86,57 @@ In this section, I will show you how to use our code and [CARLA](https://carla.o
   </p>
 </div>
 
++ **Some basics**.
+In order to simulate a **scenario** (in the code it is referred to as "moment") where a number of "Person" and "Vehicle" agents navigate in the scene for a period of time, the simulator needs to know exactly how to control each agent at each time frame. For "Person" agent the control means the direction and velocity. For "Vehicle" agent, we teleport them to the desire location and remove the physics simulation for simplicity (As of CARLA 0.9.6, it is not trivial to accurately convert direction and velocity to vehicle controls like throttling and steering. And teleporting looks smooth enough if we do it at every time frame.) So basically we need: 1. the **static map**, 2. the **full control records** of every agents at all time frames, for the simulation to run. To get human-annotated multi-future trajectories, the idea is to first recreate a plausible scenario that resembles the real-world, and then ask a human annotator to "drop-in" or "embody" a "Person" agent, and control such an agent to continue to a destination. The control record of the human annotator along with other agents' are saved as a JSON file. We leave multi-human simultaneous annotation to future work.
+
++ **Step 1**, prepare and test the CARLA simulator. Get the CARLA simulator from [here](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) and our edited maps from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz) or by:
+```
+$ wget http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz
+$ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz
+```
+Put the maps into the CARLA package:
+```
+$ mkdir CARLA_0.9.6/; cd CARLA_0.9.6/; tar -zxvf ../CARLA_0.9.6.tar.gz
+$ cd ../; tar -zxvf multiverse_maps_and_statics.tgz;
+$ cp multiverse_maps_and_statics/Town0* CARLA_0.9.6/CarlaUE4/Content/Carla/Maps/
+$ cp multiverse_maps_and_statics/Road/Town05_TerrainNode_125.u* CARLA_0.9.6/CarlaUE4/Content/Carla/Static/Road/RoadsTown05/
+$ cp multiverse_maps_and_statics/Vegetation/Town05_TerrainNode_125.u* CARLA_0.9.6/CarlaUE4/Content/Carla/Static/Vegetation/
+```
+Now you should be able to start a CARLA simulator server. The package should work out-of-the-box. I have tested it on RTX 2060/TITAN X/GTX 1080 TI GPU machine with Nvidia-430 or above drivers and on Ubuntu 16/18.
+```
+$ cd CARLA_0.9.6/; ./CarlaUE4.sh -opengl -carla-port=23015
+```
+A spectator window should popup. Then Open another terminal to test the new maps. Start an observer client with a PTZ camera to play around:
+```
+# install pygame
+$ python code/spectator.py --port 23015  --change_map Town05_actev
+```
+Both windows should be switched to a new map. For full keyboard and mouse controls of the spectator window, see [here](code/spectator.py#L136).
+
+
++ **Step 2**, to add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section). Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
+```
+$ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz
+# sha256sum: f25a02f3a362c8e05823f17b20e5c12224be0559849f46ae3143abc1828f8051
+```
+We'll need to make two file lists since we use two different maps.
+```
+$ tar -zxvf multiverse_scenarios_v1.tgz
+$ cd multiverse_scenarios_v1/
+$ ls $PWD/0* > actev.lst
+$ ls $PWD/eth.fixed.json $PWD/zara01.fixed.json $PWD/hotel.fixed.json > ethucy.lst
+```
+
++ **Step 3**, start the CARLA server and then start an annotation client.
+```
+$ cd CARLA_0.9.6/; DISPLAY= ./CarlaUE4.sh -opengl -carla-port=23015
+```
+You can change the port to others. Now, open another terminal and:
+```
+$ python code/annotate_carla.py multiverse_scenarios_v1/actev.lst actev.junwei.json actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 --pred_length 26 --is_actev --port 23015
+```
+Now a pygame window should pop up and there will be instructions in the window for annotators. For ETHUCY, change to `ethucy.lst` and `--video_fps 25.0` and remove `--is_actev`.
+
+
++ **Step 4**, now that we have the annotations, we could record videos!
 

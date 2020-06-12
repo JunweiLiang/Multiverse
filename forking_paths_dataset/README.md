@@ -147,7 +147,7 @@ actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 \
 Now a pygame window should pop up and there will be instructions in the window for annotators. For ETHUCY, change to `ethucy.lst` and `--video_fps 25.0` and remove `--is_actev`.
 
 
-### Step 4, now that we have the annotations, we could record videos!
+### Step 4, data cleaning
 Suppose you have a couple of annotators and each of them generates a JSON file from Step 3, we need a file list of these JSONs and their annotator ID:
 ```
 $ echo "$PWD/actev.junwei.json 27" >> actev_annotations.lst
@@ -173,6 +173,18 @@ $ python code/moment_editor.py actev.final.json actev.final.checked.json \
 ```
 
 Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev.final.checked.json`
+
+<div align="center">
+  <div style="">
+      <img src="../images/moment_editor_example1.gif" height="300px" />
+  </div>
+  <p style="font-weight:bold;font-size:0.9em;">
+    You can use the moment editor to edit or even create from scratch a person-vehicle scenario. See more in <a href="https://youtu.be/MktcrwkbNC4" target="_blank">this video</a>
+  </p>
+</div>
+
+### Step 5, now that we have the annotations, we could record videos!
+
 Now we can start recording videos and get ground truth annotations including bounding boxes and scene semantic segmentation.
 ```
 $ python code/record_annotation.py --is_actev --res 1920x1080 --video_fps 30.0 \

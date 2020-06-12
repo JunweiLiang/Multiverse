@@ -145,6 +145,7 @@ actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 \
 ```
 
 Now a pygame window should pop up and there will be instructions in the window for annotators. For ETHUCY, change to `ethucy.lst` and `--video_fps 25.0` and remove `--is_actev`.
+The annotator is asked to control the agent to reach the destination within 10.4 seconds and not to collide with any other agents. Each annotation session will restart if the above condition fails.
 
 
 ### Step 4, data cleaning
@@ -193,3 +194,26 @@ $ python code/record_annotation.py --is_actev --res 1920x1080 --video_fps 30.0 \
 ```
 
 For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation. The output folder should have the same structure as our released dataset.
+
+
+## Edit the Maps
+To edit the map, you will need the Unreal Engine 4 and build CARLA from source. Follow [this guide](https://carla.readthedocs.io/en/0.9.6/how_to_build_on_linux/) to build UE4 and CARLA 0.9.6. I haven't tested the latest CARLA for this project yet.
+
+After you have installed UE4, this is an example to get CARLA 0.9.6 source code and launch UE4 editor:
+```
+$ git clone https://github.com/carla-simulator/carla
+$ git checkout e2c4dc1312fe04c99147cf7403b39eba910271ba
+$ ./Update.sh
+$ export UE4_ROOT=Your_path_to/UnrealEngine/
+$ make launch
+```
+In the UE4 editor, I simply duplicate existing CARLA map first (Town05 and Town03), and then edit them to look like the ActEV or ETHUCY videos. Then save the maps.
+Now, cook the maps so that you can use it in the CARLA simulator. The following is an example:
+```
+$ UnrealEngine_4.22/Engine/Binaries/Linux/UE4Editor $carla_source_09272019/Unreal/CarlaUE4/CarlaUE4.uproject -run=cook -map=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/Maps/Town03_ethucy.umap -cooksinglepackage -targetplatform="LinuxNoEditor" -OutputDir=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/ExportedMaps/ETHUCY_map
+```
+Suppose you call the new map "Town03_ethucy", then you will have Town03_ethucy_BuiltData.* in the "ETHUCY_map" directory. These are the files we share in Step 1 of the previous section. See the previous section for how to use them.
+[Here]() is the entire workspace code I have in case you want to poke around.
+
+## Recreate Scenarios from Real-world Videos
+Given real-world videos with homography matrics between the video frame and the ground plane (and bounding boxes), we could easily recreate the scene in the simulator.

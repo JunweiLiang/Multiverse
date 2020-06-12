@@ -44,7 +44,7 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 + The dataset includes 3000 1920x1080 videos (750 human-annotated trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth. More notes and instructions about the dataset can be found [here](forking_paths_dataset/README.md#annotations).
 
-+ Instructions of how to add more human annotations, edit the scenes, recreate from real-world videos, or just simply play with 3D simulator, can be found [here](forking_paths_dataset/README.md).
++ Instructions of how to add more human annotations, edit the scenes, recreate from real-world videos, or just simply play with 3D simulator, can be found [here](forking_paths_dataset/README.md#record-more-annotations).
 
 <div align="center">
   <div style="">

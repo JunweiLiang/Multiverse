@@ -22,7 +22,7 @@ This dataset is for multi-future trajectory prediction. The common experiment se
 ]
 ```
 
-+ The scene semantic segmentation ground truth is encoded in MP4 videos. See [here](https://carla.readthedocs.io/en/0.9.6/cameras_and_sensors/) for scene classes and coloring.
++ The scene semantic segmentation ground truth is encoded in MP4 videos. See [here](https://carla.readthedocs.io/en/0.9.6/cameras_and_sensors/) for scene classes and coloring. See [this code](code/get_frames_and_scene_seg.py) for examples of converting segmentation videos to Numpy format.
 
 ## Prepare Data
 Here are instructions to prepare data for testing like the [Next-Prediction](https://github.com/google/next-prediction) repo.

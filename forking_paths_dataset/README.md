@@ -179,7 +179,7 @@ Click "[" or "]" to cycle through the annotated trajectories. Click "g" to repla
       <img src="../images/moment_editor_example1.gif" height="300px" />
   </div>
   <p style="font-weight:bold;font-size:0.9em;">
-    You can use the moment editor to edit or even create from scratch a person-vehicle scenario. See more in <a href="https://youtu.be/MktcrwkbNC4" target="_blank">this video</a>
+    You can use the moment editor to edit or even create from scratch a person-vehicle scenario. The vehicle movements will be interpolated in the final recordings so it will be much smoother. See more in <a href="https://youtu.be/MktcrwkbNC4" target="_blank">this video</a>.
   </p>
 </div>
 

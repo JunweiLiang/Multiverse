@@ -1,7 +1,7 @@
 
 # The Forking Paths Dataset
 
-Download the dataset according to [this](../README.md#the-forking-paths-dataset). For CARLA/UE4 veterans, here are the resources listed in the rest of the sections for downloading: \[[CARLA_0.9.6_compiled](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) from [CARLA](https://github.com/carla-simulator/carla/releases/tag/0.9.6)\], \[[Our_edited_maps](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz)\]
+Download the dataset according to [this](../README.md#the-forking-paths-dataset). This dataset is created based on CARLA 0.9.6. For CARLA/UE4 veterans, here are the resources listed in the rest of the sections for downloading: \[[CARLA_0.9.6_compiled](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) from [CARLA](https://github.com/carla-simulator/carla/releases/tag/0.9.6)\], \[[Our_edited_maps](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz)\]
 
 ## Annotations
 This dataset is for multi-future trajectory prediction. The common experiment setting for trajectory prediction is to let the model observe a period of time (3.2 seconds) and then predict the future 4.8 seconds. We set the observation time period in this dataset to be 4.8 seconds and the future period to be up to 10.4 seconds. For videos of the same scenario (we call it a "moment" in the code), the observation period would be the same and the future period would be different. See Section 4 in the paper for more details.
@@ -102,16 +102,16 @@ $ cp multiverse_maps_and_statics/Town0* CARLA_0.9.6/CarlaUE4/Content/Carla/Maps/
 $ cp multiverse_maps_and_statics/Road/Town05_TerrainNode_125.u* CARLA_0.9.6/CarlaUE4/Content/Carla/Static/Road/RoadsTown05/
 $ cp multiverse_maps_and_statics/Vegetation/Town05_TerrainNode_125.u* CARLA_0.9.6/CarlaUE4/Content/Carla/Static/Vegetation/
 ```
-Now you should be able to start a CARLA simulator server. The package should work out-of-the-box. I have tested it on RTX 2060/TITAN X/GTX 1080 TI GPU machine with Nvidia-430 or above drivers and on Ubuntu 16/18.
+Now you should be able to start a CARLA simulator server. The package should work out-of-the-box. I have tested it on RTX 2060/TITAN X/GTX 1080 TI GPU machine with Nvidia-430 or above drivers and on Ubuntu 16/18. Start CARLA server by:
 ```
 $ cd CARLA_0.9.6/; ./CarlaUE4.sh -opengl -carla-port=23015
 ```
-A spectator window should popup. Then Open another terminal to test the new maps. Start an observer client with a PTZ camera to play around:
+A spectator window should popup. Then open another terminal to test the new maps. Start an observer client with a PTZ camera to play around:
 ```
 # install pygame
 $ python code/spectator.py --port 23015  --change_map Town05_actev
 ```
-Both windows should be switched to a new map. For full keyboard and mouse controls of the spectator window, see [here](code/spectator.py#L136).
+Both windows should be switched to a new map. For full keyboard and mouse controls of the spectator window, see [here](code/spectator.py#L136). Now, press Ctr+C to exit both terminals.
 
 
 + **Step 2**, to add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section). Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
@@ -127,16 +127,45 @@ $ ls $PWD/0* > actev.lst
 $ ls $PWD/eth.fixed.json $PWD/zara01.fixed.json $PWD/hotel.fixed.json > ethucy.lst
 ```
 
-+ **Step 3**, start the CARLA server and then start an annotation client.
++ **Step 3**, start the CARLA server in the background:
 ```
 $ cd CARLA_0.9.6/; DISPLAY= ./CarlaUE4.sh -opengl -carla-port=23015
 ```
 You can change the port to others. Now, open another terminal and:
 ```
-$ python code/annotate_carla.py multiverse_scenarios_v1/actev.lst actev.junwei.json actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 --pred_length 26 --is_actev --port 23015
+$ python code/annotate_carla.py multiverse_scenarios_v1/actev.lst actev.junwei.json \
+actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 \
+--pred_length 26 --is_actev --port 23015
 ```
 Now a pygame window should pop up and there will be instructions in the window for annotators. For ETHUCY, change to `ethucy.lst` and `--video_fps 25.0` and remove `--is_actev`.
 
 
 + **Step 4**, now that we have the annotations, we could record videos!
-
+Suppose you have a couple of annotators and each of them generates a JSON file from Step 3, we need a file list of these JSONs and their annotator ID:
+```
+$ echo "$PWD/actev.junwei.json 27" >> actev_annotations.lst
+...
+```
+Now, make a single "moment" record JSON:
+```
+$ python code/gen_moment_from_annotation.py multiverse_scenarios_v1/actev.lst \
+actev_annotations.lst actev.final.json --video_fps 30.0 --annotation_fps 2.5 \
+--obs_length 12 --pred_length 26
+```
+Now, before recording the final videos, we should clean the data by manually looking at all the annotated trajectories and remove outliers. Start the server if it is not running:
+```
+$ cd CARLA_0.9.6/; DISPLAY= ./CarlaUE4.sh -opengl -carla-port=23015
+```
+Start the "moment" editor client:
+```
+$ python code/moment_editor.py actev.final.json actev.final.checked.json \
+ --video_fps 30.0 --is_actev --annotation_fps 2.5 --port 23015
+```
+Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev.final.checked.json`
+Now we can start recording videos and get ground truth annotations including bounding boxes and scene semantic segmentation.
+```
+$ python code/record_annotation.py --is_actev --res 1920x1080 --video_fps 30.0 \
+ --annotation_fps 2.5 --obs_length 12 --pred_length 26 actev.final.checked.json \
+ new_dataset --port 23015
+```
+For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation. The output folder should have the same structure as our released dataset.

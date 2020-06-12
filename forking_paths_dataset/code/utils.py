@@ -250,9 +250,9 @@ recording_cameras = {
                (carla.Transform(  # top-down
         carla.Location(x=-12.978075, y=-32.058861, z=48.219952),
         carla.Rotation(pitch=-87.999031, yaw=0.000000, roll=0.000000)), 70.0),
-               (carla.Transform(  # dashboard view
-        carla.Location(x=-20.141300, y=-55.388958, z=2.220005),
-        carla.Rotation(pitch=0.000260, yaw=66.998703, roll=0.000035)), 90.0),
+        #       (carla.Transform(  # dashboard view
+        #carla.Location(x=-20.141300, y=-55.388958, z=2.220005),
+        #carla.Rotation(pitch=0.000260, yaw=66.998703, roll=0.000035)), 90.0),
     ],
     "0400": [(carla.Transform(  # anchor-view
         carla.Location(x=-163.437454, y=26.059809, z=20.669943),
@@ -266,9 +266,9 @@ recording_cameras = {
                (carla.Transform(  # top-down
         carla.Location(x=-107.249977, y=49.348232, z=101.969933),
         carla.Rotation(pitch=-83.868240, yaw=89.941933, roll=0.000096)), 55.0),
-               (carla.Transform(  # dashboard view
-        carla.Location(x=-163.437454, y=26.059809, z=0.819942),
-        carla.Rotation(pitch=5.130530, yaw=42.942547, roll=0.000073)), 60.0),
+        #       (carla.Transform(  # dashboard view
+        #carla.Location(x=-163.437454, y=26.059809, z=0.819942),
+        #carla.Rotation(pitch=5.130530, yaw=42.942547, roll=0.000073)), 60.0),
     ],
     "0401": [(carla.Transform(  # anchor-view
         carla.Location(x=-128.780029, y=31.252804, z=16.156065),
@@ -282,9 +282,9 @@ recording_cameras = {
                (carla.Transform(  # top-down
         carla.Location(x=-109.142944, y=58.624207, z=70.706039),
         carla.Rotation(pitch=-80.815720, yaw=0.636051, roll=0.000164)), 65.0),
-               (carla.Transform(  # dashboard view
-        carla.Location(x=-128.780029, y=31.252802, z=1.306065),
-        carla.Rotation(pitch=3.943252, yaw=42.161617, roll=0.000125)), 80.0),
+        #       (carla.Transform(  # dashboard view
+        #carla.Location(x=-128.780029, y=31.252802, z=1.306065),
+        #carla.Rotation(pitch=3.943252, yaw=42.161617, roll=0.000125)), 80.0),
     ],
     "0500": [(carla.Transform(  # anchor-view
         carla.Location(x=-154.292542, y=-99.519508, z=26.075722),
@@ -298,9 +298,9 @@ recording_cameras = {
                (carla.Transform(  # top-down
         carla.Location(x=-100.003044, y=-96.517174, z=52.925720),
         carla.Rotation(pitch=-78.599899, yaw=89.801888, roll=0.000000)), 70.0),
-               (carla.Transform(
-        carla.Location(x=-144.576553, y=-97.665466, z=1.325722),
-        carla.Rotation(pitch=2.399254, yaw=16.803694, roll=0.000003)), 45.0),
+        #       (carla.Transform( # dashboard view
+        #carla.Location(x=-144.576553, y=-97.665466, z=1.325722),
+        #carla.Rotation(pitch=2.399254, yaw=16.803694, roll=0.000003)), 45.0),
     ],
 }
 recording_cameras["zara02"] = recording_cameras["zara01"]

@@ -210,7 +210,11 @@ $ make launch
 In the UE4 editor, I simply duplicate existing CARLA map first (Town05 and Town03), and then edit them to look like the ActEV or ETHUCY videos. Then save the maps.
 Now, cook the maps so that you can use it in the CARLA simulator. The following is an example:
 ```
-$ UnrealEngine_4.22/Engine/Binaries/Linux/UE4Editor $carla_source_09272019/Unreal/CarlaUE4/CarlaUE4.uproject -run=cook -map=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/Maps/Town03_ethucy.umap -cooksinglepackage -targetplatform="LinuxNoEditor" -OutputDir=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/ExportedMaps/ETHUCY_map
+$ UnrealEngine_4.22/Engine/Binaries/Linux/UE4Editor \
+carla_source_09272019/Unreal/CarlaUE4/CarlaUE4.uproject -run=cook \
+-map=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/Maps/Town03_ethucy.umap \
+-cooksinglepackage -targetplatform="LinuxNoEditor" \
+-OutputDir=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/ExportedMaps/ETHUCY_map
 ```
 Suppose you call the new map "Town03_ethucy", then you will have Town03_ethucy_BuiltData.* in the "ETHUCY_map" directory. These are the files we share in Step 1 of the previous section. See the previous section for how to use them.
 [Here]() is the entire workspace code I have in case you want to poke around.

@@ -1,7 +1,16 @@
 
 # The Forking Paths Dataset
 
-Download the dataset according to [this](../README.md#the-forking-paths-dataset). This dataset is created based on CARLA 0.9.6. For CARLA/UE4 veterans, here are the resources listed in the rest of the sections for downloading: \[[CARLA_0.9.6_compiled](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) from [CARLA](https://github.com/carla-simulator/carla/releases/tag/0.9.6)\], \[[Our_edited_maps](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz)\]
+Download the dataset according to [this](../README.md#the-forking-paths-dataset). This dataset is created based on CARLA 0.9.6.
+This is the ForkingPaths dataset rendered in rain just for fun: \[[ForkingPaths_v1_in_Rain](https://drive.google.com/file/d/1Iw0OyVWnJd3XaKmYlO3JBxPFEbLiaf_e/view?usp=sharing)\].
+Here are the resources listed in the rest of the sections for downloading:
+\[[CARLA_0.9.6_Compiled](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) from [CARLA](https://github.com/carla-simulator/carla/releases/tag/0.9.6)\],
+\[[Our_Edited_Maps](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz)\],
+\[[Our_Recreated_Scenarios_Before_Annotation](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz)\],
+\[[ForkingPaths_v1_Annotation](https://next.cs.cmu.edu/multiverse/dataset/forkingpaths_moments_v1.tgz)\],
+\[[Anchor_Videos](https://drive.google.com/file/d/16E85MAOqwIGCnKKLDAzQ4Q3cMjS27mrG/view?usp=sharing)\],
+\[[Our_Entire_CARLA_Workspace](https://drive.google.com/file/d/18zIMtWpmaq4nYHpdrTxNPFwE7EgK13qU/view?usp=sharing)\],
+
 
 ## Annotations
 This dataset is for multi-future trajectory prediction. The common experiment setting for trajectory prediction is to let the model observe a period of time (3.2 seconds) and then predict the future 4.8 seconds. We set the observation time period in this dataset to be 4.8 seconds and the future period to be up to 10.4 seconds. For videos of the same scenario (we call it a "moment" in the code), the observation period would be the same and the future period would be different. See Section 4 in the paper for more details.
@@ -116,7 +125,8 @@ Both windows should be switched to a new map. For full keyboard and mouse contro
 
 
 ### Step 2, get recreated scenarios
-To add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section). Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
+To add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section).
+Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
 
 ```
 $ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz
@@ -184,6 +194,8 @@ Click "[" or "]" to cycle through the annotated trajectories. Click "g" to repla
   </p>
 </div>
 
+[Here](https://next.cs.cmu.edu/multiverse/dataset/forkingpaths_moments_v1.tgz) are the final annotated JSONs of the **ForkingPaths dataset v1**.
+
 ### Step 5, now that we have the annotations, we could record videos!
 
 Now we can start recording videos and get ground truth annotations including bounding boxes and scene semantic segmentation.
@@ -193,7 +205,11 @@ $ python code/record_annotation.py --is_actev --res 1920x1080 --video_fps 30.0 \
  new_dataset --port 23015
 ```
 
-For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation. The camera views are set manually by using `code/spectator.py` to find the right camera view (Location, Rotation, Field of View). See the scene-specific camera parameters [here](code/utils.py#L201). The output folder should have the same structure as our released dataset.
+For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation.
+The camera views are set manually by using `code/spectator.py` to find the right camera view (Location, Rotation, Field of View).
+See the scene-specific camera parameters [here](code/utils.py#L201).
+We also manually tune the weather parameters [here](code/utils.py#L80) to make the shadow's length and direction match the one in the real videos.
+The output folder should have the same structure as our released dataset.
 
 
 ## Edit the Maps
@@ -318,6 +334,6 @@ actev_final/0000.fixed.json --is_actev --video_fps 30 --annotation_fps 2.5 \
 
 Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. Click "x" to set the current selected agent as "x agent" (the agent that will be "embodied" by human annotator).
 See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev_final/0000.fixed.json`.
-This is how we get the [annotation scenarios](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz).
+This is how we get the [scenarios before human annotations](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz).
 
 

@@ -79,7 +79,7 @@ In this section, I will show you how to use our code and [CARLA](https://carla.o
 
 <div align="center">
   <div style="">
-      <img src="../images/carla_annotation_multifuture_interface.gif" height="300px" />
+      <img src="../images/carla_annotation_multifuture_interface.gif" height="400px" />
   </div>
   <p style="font-weight:bold;font-size:0.9em;">
     This is the human annotation procedure. Annotators are provided with a bird-eye view of the scene first and then they are asked to control the agent to go to the destination. More to see in <a href="https://youtu.be/FJTJquN2Kj4" target="_blank">this video</a>
@@ -87,7 +87,7 @@ In this section, I will show you how to use our code and [CARLA](https://carla.o
 </div>
 
 ### Some basics
-In order to simulate a **scenario** (in the code it is referred to as "moment") where a number of "Person" and "Vehicle" agents navigate in the scene for a period of time, the simulator needs to know exactly how to control each agent at each time frame. For "Person" agent the control means the direction and velocity. For "Vehicle" agent, we teleport them to the desire location and remove the physics simulation for simplicity (As of CARLA 0.9.6, it is not trivial to accurately convert direction and velocity to vehicle controls like throttling and steering. And teleporting looks smooth enough if we do it at every time frame.) So basically we need: 1. the **static map**, 2. the **full control records** of every agents at all time frames, for the simulation to run. To get human-annotated multi-future trajectories, the idea is to first recreate a plausible scenario that resembles the real-world, and then ask a human annotator to "drop-in" or "embody" a "Person" agent, and control such an agent to continue to a destination. The control record of the human annotator along with other agents' are saved as a JSON file. We leave multi-human simultaneous annotation to future work.
+In order to simulate a **scenario** (in the code it is referred to as "moment") where a number of "Person" and "Vehicle" agents navigate in the scene for a period of time, the simulator needs to know exactly how to control each agent at each time frame. For "Person" agent the control means the direction and velocity. For "Vehicle" agent, we teleport them to the desire location and remove the physics simulation for simplicity (As of CARLA 0.9.6, it is not trivial to accurately convert direction and velocity to vehicle controls like throttling and steering. And teleporting looks smooth enough if we do it at every time frame.) So basically we need: 1. the **static map**, 2. the **full control records** of every agents at all time frames, for the simulation to run. To get human-annotated multi-future trajectories, the idea is to first recreate a plausible scenario that resembles the real-world, and then ask a human annotator to "drop-in" or "embody" a "Person" agent, and control such an agent to continue to a destination. The control record of the human annotator along with other agents' are saved as a JSON file. We leave multi-human simultaneous annotation to future work. The following requires Python3.
 
 ### Step 1, prepare and test the CARLA simulator
 Get the CARLA simulator from [here](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) and our edited maps from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz) or by:
@@ -173,7 +173,7 @@ $ python code/moment_editor.py actev.final.json actev.final.checked.json \
  --video_fps 30.0 --is_actev --annotation_fps 2.5 --port 23015
 ```
 
-Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev.final.checked.json`
+Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev.final.checked.json`.
 
 <div align="center">
   <div style="">
@@ -193,7 +193,7 @@ $ python code/record_annotation.py --is_actev --res 1920x1080 --video_fps 30.0 \
  new_dataset --port 23015
 ```
 
-For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation. The output folder should have the same structure as our released dataset.
+For ETHUCY, remove `--is_actev` and change `--video_fps 25.0`. The recording is done in the background and 4 cameras are used simultaneously to record the simulation. The camera views are set manually by using `code/spectator.py` to find the right camera view (Location, Rotation, Field of View). See the scene-specific camera parameters [here](code/utils.py#L201). The output folder should have the same structure as our released dataset.
 
 
 ## Edit the Maps
@@ -217,7 +217,107 @@ carla_source_09272019/Unreal/CarlaUE4/CarlaUE4.uproject -run=cook \
 -OutputDir=carla_source_09272019/Unreal/CarlaUE4/Content/Carla/ExportedMaps/ETHUCY_map
 ```
 Suppose you call the new map "Town03_ethucy", then you will have Town03_ethucy_BuiltData.* in the "ETHUCY_map" directory. These are the files we share in Step 1 of the previous section. See the previous section for how to use them.
-[Here]() is the entire workspace code I have in case you want to poke around.
+[Here](https://drive.google.com/file/d/18zIMtWpmaq4nYHpdrTxNPFwE7EgK13qU/view?usp=sharing) is the entire workspace code I have in case you want to poke around.
 
 ## Recreate Scenarios from Real-world Videos
-Given real-world videos with homography matrics between the video frame and the ground plane (and bounding boxes), we could easily recreate the scene in the simulator.
+Given real-world videos with homography matrics between the video frame and the ground plane (and bounding boxes), we could almost automatically recreate the scenarios in the simulator, given that we already have the static scenes reconstructed. Here are instructions for recreating the ActEV dataset.
+
+<div align="center">
+  <div style="">
+      <img src="../images/multifuture_scene_recon.gif" height="400px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.0em;">
+    In this section you will learn how to recreate scenarios from real-world videos into 3D simulation like this.
+  </p>
+</div>
+
+### Step 1, get person & vehicle trajectories in world coordinates
+Download trajectory data from [Next-Prediction](https://github.com/google/next-prediction) and homography matrics:
+```
+$ wget https://next.cs.cmu.edu/data/final_annos.tgz
+$ wget https://next.cs.cmu.edu/multiverse/dataset/actev_homography_0502to0500.tgz
+$ tar -zxvf final_annos.tgz; tar -zxvf actev_homography_0502to0500.tgz
+```
+
+Compute ground plane trajectories with the homography matrics:
+```
+$ python code/combine_traj.py final_annos/actev_annos/virat_2.5fps_resized_allfeature/ \
+ actev_trajs/pixel actev_trajs/all_frames.json --is_actev \
+ --h_path actev_homography_0502to0500 --target_w_path actev_trajs/world
+```
+
+Get the vehicle trajectories:
+```
+$ wget https://next.cs.cmu.edu/data/actev-v1-drop4-yaml.tgz
+$ tar -zxvf actev-v1-drop4-yaml.tgz
+$ mkdir actev_all_annotations/
+$ find actev-v1-drop4-yaml/ -name "*.yml" | while read line;do mv $line actev_all_annotations/; done
+# need pyyaml >= 5.1; $ sudo pip install --ignore-installed -U PyYAML
+$ python code/get_vehicle_traj.py actev_trajs/pixel/ actev_all_annotations/ \
+actev_homography_0502to0500/ actev_vehicle_trajs
+```
+
+### Step 2, get the appropriate calibration parameters (origin, rotation, etc.) to convert trajectories into CARLA map-specific coordinates
+In this step, we need to plot the trajectories in the simulation scene to see whether they make sense. So first start the CARLA server:
+```
+$ cd CARLA_0.9.6/; DISPLAY= ./CarlaUE4.sh -opengl -carla-port=23015
+```
+
+Then open another terminal and start an spectator client and move to the anchor view of the scene (use 0000 as an example):
+```
+$ python code/spectator.py --port 23015 --change_map Town05_actev \
+--go_to_0000_anchor --set_weather
+```
+
+Plot the trajectories and repeat until you find them reasonably align with the static scenes. Click on the ground of the **spectator window** to see the world xyz, and then a second click to get the rotation degree.
+```
+$ python code/plot_traj_carla.py actev_trajs/world/VIRAT_S_000000.txt 4860 \
+3.5 -48 0.3 130 --world_rotate 320 --scale 1.0 --is_actev \
+--vehicle_world_traj_file  actev_vehicle_trajs/world/VIRAT_S_000000.txt \
+--port 23015
+```
+
+Put the calibration parameters from each scene into `code/batch_plot_traj_carla.py`. Convert all trajectories into CARLA world coordinates:
+```
+$ python code/batch_plot_traj_carla.py actev_trajs/world/ actev_carla_pedestrian/ \
+--traj_vehicle_world_path actev_vehicle_trajs/world/ \
+--save_carla_vehicle_path actev_carla_vehicle
+```
+
+### Step 3, run simulations to remove scenarios with collisions
+Start the CARLA server if you haven't already. To check individual scenarios, start a spectator first:
+```
+$ python code/spectator.py --port 23015 --change_map Town05_actev \
+--go_to_0000_anchor --set_weather
+```
+
+Start individual moment to see it on the spectator:
+```
+$ python code/build_moment.py actev_carla_pedestrian/VIRAT_S_000000.txt \
+4716 4956 --vehicle_traj actev_carla_vehicle/VIRAT_S_000000.txt \
+--vehicle_z 0.2 --port 23015
+```
+
+It is not practical to manually check every reconstructed scenarios. Run the following to get scenarios that are collision-free so that we could use them for candidates for human annotations:
+```
+$ python code/auto_moment_candidates.py actev_carla_pedestrian/ --is_actev \
+--vehicle_traj_path actev_carla_vehicle/ --moment_length 15.2 --test_skip 10 \
+actev_candidates_m15.2_skip10 --port 23015
+```
+
+Now optionally you can use these scenario JSONs in `actev_candidates_m15.2_skip10` to record videos. Follow [this guide](./README.md#step-5-now-that-we-have-the-annotations-we-could-record-videos) in previous section. [Here](https://drive.google.com/file/d/16E85MAOqwIGCnKKLDAzQ4Q3cMjS27mrG/view?usp=sharing) are the collision-free videos we recreated (we call them "anchor videos"). These videos and annotations are used for the "Trained on Sim." experiments.
+
+### Step 4, manually check the filtered scenarios and prepare for multi-future annotations
+Manually go through all filtered scenarios and find those that are suitable for multi-future trajectories.
+```
+$ mkdir actev_final/
+$ python code/moment_editor.py actev_candidates_m15.2_skip10/0000.json \
+actev_final/0000.fixed.json --is_actev --video_fps 30 --annotation_fps 2.5 \
+--obs_length 12 --pred_length 26 --port 23015
+```
+
+Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. Click "x" to set the current selected agent as "x agent" (the agent that will be "embodied" by human annotator).
+See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev_final/0000.fixed.json`.
+This is how we get the [annotation scenarios](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz).
+
+

@@ -218,10 +218,11 @@ To edit the map, you will need the Unreal Engine 4 and build CARLA from source. 
 After you have installed UE4, this is an example to get CARLA 0.9.6 source code and launch UE4 editor:
 ```
 $ git clone https://github.com/carla-simulator/carla
+$ cd carla
 $ git checkout e2c4dc1312fe04c99147cf7403b39eba910271ba
 $ ./Update.sh
 $ export UE4_ROOT=Your_path_to/UnrealEngine/
-$ cd carla; make launch
+$ make launch
 ```
 In the UE4 editor, I simply duplicate existing CARLA map first (Town05 and Town03), and then edit them to look like the ActEV or ETHUCY videos. Then save the maps.
 Now, cook the maps so that you can use it in the CARLA simulator. The following is an example:

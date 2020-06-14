@@ -68,16 +68,19 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 Our second contribution is a new model to generate multiple plausible future trajectories, which contains novel designs of using multi-scale location encodings and convolutional RNNs over graphs. We refer to our model as Multiverse.
 
-Coming soon.
 
 ## Dependencies
-+ Python 2/3; TensorFlow-GPU >= 1.10.0
++ Python 2/3; TensorFlow-GPU >= 1.15.0
 
 ## Pretrained Models
+You can download pretrained models by running the script
+`bash scripts/download_single_models.sh`.
 
-## Testing
+## Testing and Visualization
+Instructions for testing pretrained models can be [found here](TESTING.md).
 
 ## Training new models
+Instructions for training new models can be [found here](TRAINING.md).
 
 ## Acknowledgments
 The Forking Paths Dataset is created based on the [CARLA Simulator](https://carla.org) and [Unreal Engine 4](https://www.unrealengine.com/en-US/).

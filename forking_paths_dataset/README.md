@@ -12,6 +12,10 @@ Here are the resources listed in the rest of the sections for downloading:
 \[[Our_Entire_CARLA_Workspace](https://drive.google.com/file/d/18zIMtWpmaq4nYHpdrTxNPFwE7EgK13qU/view?usp=sharing)\],
 
 
+## Content
+1. Annotations
+
+
 ## Annotations
 This dataset is for multi-future trajectory prediction. The common experiment setting for trajectory prediction is to let the model observe a period of time (3.2 seconds) and then predict the future 4.8 seconds. We set the observation time period in this dataset to be 4.8 seconds and the future period to be up to 10.4 seconds. For videos of the same scenario (we call it a "moment" in the code), the observation period would be the same and the future period would be different. See Section 4 in the paper for more details.
 
@@ -67,7 +71,7 @@ next_x_v1_dataset_prepared_data/obs_data/bad_video.lst \
 --scene_h 36 --scene_w 64 --is_multifuture
 ```
 
-Now you can follow [this](../TESTING.md) to run multi-future inferencing with the Multiverse model. Optionally, to run [Next-Prediction](https://github.com/google/next-prediction) on this dataset, you can follow [this](https://github.com/JunweiLiang/next-prediction/blob/master/code/prepare_data/README.md#step-5-get-person-appearance-features) to extract person appearance features based on the RGB frames and person bounding boxes we get from Step 2 and 3.
+Now you can follow [this](../TESTING.md#multi-future-trajectory-prediction) to run multi-future inferencing with the Multiverse model. Optionally, to run [Next-Prediction](https://github.com/google/next-prediction) on this dataset, you can follow [this](https://github.com/JunweiLiang/next-prediction/blob/master/code/prepare_data/README.md#step-5-get-person-appearance-features) to extract person appearance features based on the RGB frames and person bounding boxes we get from Step 2 and 3.
 
 ## Visualize the Dataset
 To get the cool multi-future visualization like the following, run this:

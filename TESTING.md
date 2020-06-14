@@ -70,7 +70,6 @@ The evaluation result should be:
     <td>FDE</td>
   </tr>
   <tr>
-
     <td>22.94</td>
     <td>43.34</td>
   </tr>

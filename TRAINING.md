@@ -75,7 +75,7 @@ $ python code/test.py actev_preprocess multiverse-models new_train/ \
 --use_scene --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 \
 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 500 \
 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 \
---scene_grid_strides 2,4 --use_grids 1,1 --val_grid_num 0 --gpuid 0 --load_best
+--scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --gpuid 0 --load_best
 ```
 The best model on the validation set will be used.
 

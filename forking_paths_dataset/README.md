@@ -13,7 +13,12 @@ Here are the resources listed in the rest of the sections for downloading:
 
 
 ## Content
-1. Annotations
+1. [Annotations](./README.md#annotations)
+2. [Prepare Data](./README.md#prepare-data)
+3. [Visualize the Dataset](./README.md#visualize-the-dataset)
+4. [Record More Annotations](./README.md#record-more-annotations)
+5. [Edit the Maps](./README.md#edit-the-maps)
+6. [Recreate Scenarios from Real-world Videos](./README.md#recreate-scenarios-from-real-world-videos)
 
 
 ## Annotations
@@ -253,7 +258,7 @@ Given real-world videos with homography matrics between the video frame and the 
 </div>
 
 ### Step 1, get person & vehicle trajectories in world coordinates
-Download trajectory data from [Next-Prediction](https://github.com/google/next-prediction) and homography matrics:
+Download trajectory data from [Next-Prediction](https://github.com/google/next-prediction) and homography matrics (note that we use 0502 scene's homography matrix to replace 0500's since the original one is not accurate):
 ```
 $ wget https://next.cs.cmu.edu/data/final_annos.tgz
 $ wget https://next.cs.cmu.edu/multiverse/dataset/actev_homography_0502to0500.tgz

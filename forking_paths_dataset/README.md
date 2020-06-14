@@ -92,6 +92,15 @@ $ python code/visualize_multifuture_dataset.py next_x_v1_dataset/rgb_videos/ \
   </div>
 </div>
 
+<div align="center">
+  <div style="">
+      <img src="../images/scenes.png" height="300px" />
+  </div>
+  <p>
+      We have collected multi-future trajectories from 7 scenes.
+  </p>
+</div>
+
 
 ## Record More Annotations
 In this section, I will show you how to use our code and [CARLA](https://carla.org) simulator to get more human annotations like the following.

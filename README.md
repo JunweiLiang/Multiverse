@@ -79,6 +79,16 @@ You can download pretrained models by running the script
 ## Testing and Visualization
 Instructions for testing pretrained models can be [found here](TESTING.md).
 
+<div align="center">
+  <div style="">
+      <img src="images/0400_40_256_cam2_sgan.gif" height="255px" />
+      <img src="images/0400_40_256_cam2_ours.gif" height="255px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.2em;">
+    Qualitative analysis between Social-GAN (left) and our model.
+  </p>
+</div>
+
 ## Training new models
 Instructions for training new models can be [found here](TRAINING.md).
 

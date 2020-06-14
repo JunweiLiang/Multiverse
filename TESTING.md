@@ -146,3 +146,13 @@ $ cd model_output_visualize_videos
 $ for file in *;do ffmpeg -framerate 4 -i ${file}/%08d.jpg ${file}.mp4;done
 ```
 
+<div align="center">
+  <div style="">
+      <img src="images/0400_40_256_cam2_sgan.gif" height="255px" />
+      <img src="images/0400_40_256_cam2_ours.gif" height="255px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.2em;">
+    Qualitative analysis between Social-GAN (left) and our model.
+  </p>
+</div>
+

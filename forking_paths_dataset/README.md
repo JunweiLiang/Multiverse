@@ -19,6 +19,7 @@ Here are the resources listed in the rest of the sections for downloading:
 4. [Record More Annotations](#record-more-annotations)
 5. [Edit the Maps](#edit-the-maps)
 6. [Recreate Scenarios from Real-world Videos](#recreate-scenarios-from-real-world-videos)
+7. [Future Work](#future-work)
 
 
 ## Annotations
@@ -346,4 +347,9 @@ Click "[" or "]" to cycle through the annotated trajectories. Click "g" to repla
 See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev_final/0000.fixed.json`.
 This is how we get the [scenarios before human annotations](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz).
 
+## Future Work
+Many exciting directions can be explored based on this work.
++ Multi-human multi-future trajectory. Asking multiple human annotators to control agents in the scenario at the same time.
++ Human driver behavior prediction. We could create a complex situation with pedestrian and vehicles and a human annotator is asked to drive a car across to a destination.
++ Activity reconstruction. CARLA has added bone controls in later version, which could be used to automatically get pedestrian agents to perform complex activities.
 

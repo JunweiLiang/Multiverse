@@ -3,3 +3,4 @@ tqdm
 matplotlib
 numpy
 opencv-python
+pygame

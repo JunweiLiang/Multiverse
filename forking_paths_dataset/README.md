@@ -174,7 +174,8 @@ actev.junwei.log.json --video_fps 30.0 --annotation_fps 2.5 --obs_length 12 \
 ```
 
 Now a pygame window should pop up and there will be instructions in the window for annotators. For ETHUCY, change to `ethucy.lst` and `--video_fps 25.0` and remove `--is_actev`.
-The annotator is asked to control the agent to reach the destination within 10.4 seconds and not to collide with any other agents. Each annotation session will restart if the above condition fails.
+The annotator is asked to control the agent to reach the destination within 10.4 seconds and not to collide with any other agents. Each annotation session will restart if the above condition fails. Currently we use a third-person camera for the annotation since it helps the annotator to get a better sense of their surroundings, as currently the agent controls are limited (e.g., it is not trivial to use mouse to control agent's neck movement). You can change the annotator's camera setting [here](code/annotate_carla.py#L670).
+It would be cool to have VR headset connected to CARLA for the human annotator in [future work](#future-work).
 
 
 ### Step 4, data cleaning
@@ -358,7 +359,9 @@ This is how we get the [scenarios before human annotations](https://next.cs.cmu.
 
 ## Future Work
 Many exciting directions can be explored based on this work.
++ Better agent controls. Add mouse controls to control the agent's neck movement so annotators can get better sense of their surroundings during annotations. Or we could even attach a VR headset to CARLA if it is supported.
 + Multi-human multi-future trajectory. Asking multiple human annotators to control agents in the scenario at the same time.
 + Human driver behavior prediction. We could create a complex situation with pedestrians and vehicles and a human annotator is asked to drive a car across to a destination.
 + Activity reconstruction. CARLA has added bone controls in later versions, which could be used to automatically get pedestrian agents to perform complex activities.
+
 

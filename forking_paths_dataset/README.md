@@ -350,6 +350,6 @@ This is how we get the [scenarios before human annotations](https://next.cs.cmu.
 ## Future Work
 Many exciting directions can be explored based on this work.
 + Multi-human multi-future trajectory. Asking multiple human annotators to control agents in the scenario at the same time.
-+ Human driver behavior prediction. We could create a complex situation with pedestrian and vehicles and a human annotator is asked to drive a car across to a destination.
-+ Activity reconstruction. CARLA has added bone controls in later version, which could be used to automatically get pedestrian agents to perform complex activities.
++ Human driver behavior prediction. We could create a complex situation with pedestrians and vehicles and a human annotator is asked to drive a car across to a destination.
++ Activity reconstruction. CARLA has added bone controls in later versions, which could be used to automatically get pedestrian agents to perform complex activities.
 

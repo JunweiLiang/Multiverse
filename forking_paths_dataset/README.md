@@ -13,7 +13,7 @@ Here are the resources listed in the rest of the sections for downloading:
 
 
 ## Content
-1. [Annotations](./README.md#annotations)
+1. [Annotations](#annotations)
 2. [Prepare Data](./README.md#prepare-data)
 3. [Visualize the Dataset](./README.md#visualize-the-dataset)
 4. [Record More Annotations](./README.md#record-more-annotations)

@@ -14,11 +14,11 @@ Here are the resources listed in the rest of the sections for downloading:
 
 ## Content
 1. [Annotations](#annotations)
-2. [Prepare Data](./README.md#prepare-data)
-3. [Visualize the Dataset](./README.md#visualize-the-dataset)
-4. [Record More Annotations](./README.md#record-more-annotations)
-5. [Edit the Maps](./README.md#edit-the-maps)
-6. [Recreate Scenarios from Real-world Videos](./README.md#recreate-scenarios-from-real-world-videos)
+2. [Prepare Data](#prepare-data)
+3. [Visualize the Dataset](#visualize-the-dataset)
+4. [Record More Annotations](#record-more-annotations)
+5. [Edit the Maps](#edit-the-maps)
+6. [Recreate Scenarios from Real-world Videos](#recreate-scenarios-from-real-world-videos)
 
 
 ## Annotations
@@ -331,7 +331,7 @@ $ python code/auto_moment_candidates.py actev_carla_pedestrian/ --is_actev \
 actev_candidates_m15.2_skip10 --port 23015
 ```
 
-Now optionally you can use these scenario JSONs in `actev_candidates_m15.2_skip10` to record videos. Follow [this guide](./README.md#step-5-now-that-we-have-the-annotations-we-could-record-videos) in previous section. [Here](https://drive.google.com/file/d/16E85MAOqwIGCnKKLDAzQ4Q3cMjS27mrG/view?usp=sharing) are the collision-free videos we recreated (we call them "anchor videos"). These videos and annotations are used for the "Trained on Sim." experiments.
+Now optionally you can use these scenario JSONs in `actev_candidates_m15.2_skip10` to record videos. Follow [this guide](#step-5-now-that-we-have-the-annotations-we-could-record-videos) in previous section. [Here](https://drive.google.com/file/d/16E85MAOqwIGCnKKLDAzQ4Q3cMjS27mrG/view?usp=sharing) are the collision-free videos we recreated (we call them "anchor videos"). These videos and annotations are used for the "Trained on Sim." experiments.
 
 ### Step 4, manually check the filtered scenarios and prepare for multi-future annotations
 Manually go through all filtered scenarios and find those that are suitable for multi-future trajectories.

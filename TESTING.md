@@ -96,7 +96,8 @@ model1_output.traj.p --save_prob_file model1_output.prob.p \
 This will save the trajectory output to `model1_output.traj.p` and grid probabilities to `model1_output.prob.p`.
 To evaluate trajectories using minADE/minFDE metrics:
 ```
-$ python code/multifuture_eval_trajs.py forking_paths_dataset/next_x_v1_dataset_prepared_data/multifuture/test/ model1_output.traj.p
+$ python code/multifuture_eval_trajs.py forking_paths_dataset/next_x_v1_dataset_prepared_data/multifuture/test/ \
+model1_output.traj.p
 ```
 
 The evaluation result should be:
@@ -117,7 +118,8 @@ The evaluation result should be:
 
 To evaluate using Negative Log-Likelihood metric:
 ```
-$ python code/multifuture_eval_trajs_prob.py forking_paths_dataset/next_x_v1_dataset_prepared_data/multifuture/test/ model1_output.prob.p
+$ python code/multifuture_eval_trajs_prob.py forking_paths_dataset/next_x_v1_dataset_prepared_data/multifuture/test/ \
+model1_output.prob.p
 ```
 
 The evaluation result should be:
@@ -137,7 +139,9 @@ The evaluation result should be:
 ## Visualization
 To visualize the model output, follow [this](forking_paths_dataset/README.md#visualize-the-dataset) to generate multi-future videos, and then run:
 ```
-$ python code/vis_multifuture_trajs_video.py forking_paths_dataset/next_x_v1_dataset_prepared_data/multifuture/test/ model1_output.traj.p forking_paths_dataset/multifuture_visualization/ model_output_visualize_videos --show_obs --use_heatmap --drop_frame 10
+$ python code/vis_multifuture_trajs_video.py forking_paths_dataset/next_x_v1_dataset_prepared_data/multifuture/test/ \
+model1_output.traj.p forking_paths_dataset/multifuture_visualization/ \
+model_output_visualize_videos --show_obs --use_heatmap --drop_frame 10
 $ cd model_output_visualize_videos
 $ for file in *;do ffmpeg -framerate 4 -i ${file}/%08d.jpg ${file}.mp4;done
 ```

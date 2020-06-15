@@ -1058,7 +1058,8 @@ def get_3d_bbox(actor_, camera_actor):
   camera_rt_inv = np.linalg.inv(camera_rt)
   # [3, 8]
   x_y_z = np.dot(camera_rt_inv, world_vertices)[:3, :]
-  # why?, unreal coordinates problem?
+  # wadu hek? why?, unreal coordinates problem?
+  # email me (junweil@cs.cmu.edu) if you know why
   y_minus_z_x = np.concatenate(
       [x_y_z[1, :], - x_y_z[2, :], x_y_z[0, :]], axis=0)
 

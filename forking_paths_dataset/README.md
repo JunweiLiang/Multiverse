@@ -360,6 +360,7 @@ This is how we get the [scenarios before human annotations](https://next.cs.cmu.
 ## Future Work
 Many exciting directions can be explored based on this work.
 + Better agent controls. Add mouse controls to control the agent's neck movement so annotators can get better sense of their surroundings during annotations. Or we could even attach a VR headset to CARLA if it is supported.
++ Small improvements including out-of-frame agent interpolations (so they don't just disappear), spawn-time jittering (so their animation won't be in sync), adding correct initial rotation
 + Multi-human multi-future trajectory. Asking multiple human annotators to control agents in the scenario at the same time.
 + Human driver behavior prediction. We could create a complex situation with pedestrians and vehicles and a human annotator is asked to drive a car across to a destination.
 + Activity reconstruction. CARLA has added bone controls in later versions, which could be used to automatically get pedestrian agents to perform complex activities.

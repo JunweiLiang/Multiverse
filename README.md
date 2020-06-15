@@ -46,6 +46,8 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 + Instructions of how to add more human annotations, edit the scenes, recreate from real-world videos, or **just simply to play with 3D simulator**, can be found [here](forking_paths_dataset/README.md#record-more-annotations).
 
++ Instructions of how to semi-automatically **re-create real-world videos' scenarios** with homography matrices into 3D simulation can be found [here](forking_paths_dataset/README.md#recreate-scenarios-from-real-world-videos).
+
 <div align="center">
   <div style="">
       <img src="images/multi_view_v2.gif" height="255px" />

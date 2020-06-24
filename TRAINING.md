@@ -36,7 +36,7 @@ $ python code/train.py actev_preprocess multiverse-models new_train/ \
 --use_scene --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 \
 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 500 \
 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 \
---scene_grid_strides 2,4 --use_grids 1,1 --val_grid_num 0 --gpuid 0
+--scene_grid_strides 2,4 --use_grids 1,1 --val_grid_num 0 --train_w_onehot --gpuid 0
 ```
 
 By default this will train the multiverse model, periodically saving model

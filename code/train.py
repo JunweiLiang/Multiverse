@@ -117,7 +117,7 @@ parser.add_argument("--batch_size", type=int, default=64)
 # num_step will be num_example/batch_size * epoch
 parser.add_argument("--num_epochs", type=int, default=100)
 # drop out rate
-parser.add_argument("--keep_prob", default=0.7, type=float,
+parser.add_argument("--keep_prob", default=1.0, type=float,
                     help="1.0 - drop out rate")
 # l2 weight decay rate
 parser.add_argument("--wd", default=0.0001, type=float,

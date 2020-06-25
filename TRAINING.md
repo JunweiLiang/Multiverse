@@ -32,7 +32,7 @@ You can train your model by running:
 $ python code/train.py actev_preprocess multiverse-models new_train/ \
 --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 \
 --enc_hidden_size 256 --dec_hidden_size 256 --activation_func tanh \
---keep_prob 1.0 --num_epochs 40 --batch_size 16 --init_lr 0.3 --use_gnn \
+--keep_prob 1.0 --num_epochs 60 --batch_size 20 --init_lr 0.3 --use_gnn \
 --use_scene --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 \
 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 500 \
 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 \
@@ -45,6 +45,7 @@ directory.
 The script will also periodically evaluate the model on the
 validation set and save the latest best model to
 `multiverse-models/new_train/00/best`.
+On a TITAN X GPU it takes about 48 hours to finish training.
 Detailed commands of the training script:
 
 ### Training options

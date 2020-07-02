@@ -21,6 +21,13 @@ If you find this code useful in your research then please cite
   month = {June},
   year={2020}
 }
+@inproceedings{liang2020simaug,
+  title={SimAug: Learning Robust Representations from 3D Simulation for Pedestrian Trajectory Prediction in Unseen Cameras},
+  author={Liang, Junwei and Jiang, Lu and Hauptmann, Alexander},
+  booktitle={Proceedings of the European conference on computer vision (ECCV)},
+  month = {August},
+  year={2020}
+}
 ```
 
 # Introduction

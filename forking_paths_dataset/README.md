@@ -233,7 +233,7 @@ The output folder should have the same structure as our released dataset.
 
 
 ## Edit the Maps
-To edit the map, you will need the Unreal Engine 4 and build CARLA from source. Follow [this guide](https://carla.readthedocs.io/en/0.9.6/how_to_build_on_linux/) to build UE4 and CARLA 0.9.6. I haven't tested the latest CARLA for this project yet.
+To edit the map, you will need the Unreal Engine 4 and build CARLA from source. Follow [this guide](https://carla.readthedocs.io/en/0.9.6/how_to_build_on_linux/) to build UE4 (version 4.22) and CARLA 0.9.6. I haven't tested the latest CARLA for this project yet.
 
 After you have installed UE4, this is an example to get CARLA 0.9.6 source code and launch UE4 editor:
 ```

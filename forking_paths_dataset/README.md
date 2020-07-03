@@ -256,6 +256,8 @@ carla_source_09272019/Unreal/CarlaUE4/CarlaUE4.uproject -run=cook \
 Suppose you call the new map "Town03_ethucy", then you will have Town03_ethucy_BuiltData.* in the "ETHUCY_map" directory. These are the files we share in Step 1 of the previous section. See the previous section for how to use them.
 [Here](https://drive.google.com/file/d/18zIMtWpmaq4nYHpdrTxNPFwE7EgK13qU/view?usp=sharing) is the entire workspace code I have in case you want to poke around.
 
+If you meet any problems, [here](https://github.com/JunweiLiang/Multiverse/issues/2#issuecomment-653431734) are some more instructions provided by [@huikunbi](https://github.com/huikunbi) to load the maps and assets.
+
 ## Recreate Scenarios from Real-world Videos
 Given real-world videos with homography matrics between the video frame and the ground plane (and bounding boxes), we could almost automatically recreate the scenarios in the simulator, given that we already have the static scenes reconstructed. Here are instructions for recreating the ActEV dataset.
 

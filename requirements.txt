@@ -4,3 +4,4 @@ matplotlib
 numpy
 opencv-python
 pygame
+carla==0.9.6

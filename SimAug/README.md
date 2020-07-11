@@ -2,7 +2,7 @@
 
 This repository contains the code and models for the following paper:
 
-**[SimAug: }: Learning Robust Representations from 3D Simulation for Pedestrian Trajectory Prediction in Unseen Cameras](https://arxiv.org/abs/1912.06445)** \
+**[SimAug: Learning Robust Representations from 3D Simulation for Pedestrian Trajectory Prediction in Unseen Cameras](https://arxiv.org/abs/1912.06445)** \
 [Junwei Liang](https://www.cs.cmu.edu/~junweil/),
 [Lu Jiang](http://www.lujiang.info/),
 [Alexander Hauptmann](https://www.cs.cmu.edu/~alex/)

@@ -296,6 +296,14 @@ $ python code/get_vehicle_traj.py actev_trajs/pixel/ actev_all_annotations/ \
 actev_homography_0502to0500/ actev_vehicle_trajs
 ```
 
+For ETH/UCY (ZARA1, ZARA2, ETH, HOTEL), this is how you get the world coordinates:
+```
+# do the following for eth,hotel,zara1,zara2
+$ python code/combine_traj.py final_annos/ucyeth_annos/original_trajs/eth/ \
+ ethucy_trajs/world ethucy_trajs/all_frames.json --reverse_xy
+$ cp -r final_annos/ucyeth_annos/traj_pixels ethucy_trajs/pixel
+```
+
 ### Step 2, get the appropriate calibration parameters (origin, rotation, etc.) to convert trajectories into CARLA map-specific coordinates
 In this step, we need to plot the trajectories in the simulation scene to see whether they make sense. So first start the CARLA server:
 ```
@@ -322,6 +330,39 @@ $ python code/batch_plot_traj_carla.py actev_trajs/world/ actev_carla_pedestrian
 --traj_vehicle_world_path actev_vehicle_trajs/world/ \
 --save_carla_vehicle_path actev_carla_vehicle
 ```
+
+For ETH/UCY, first change map to `Town03_ethucy`:
+```
+$ python code/spectator.py --port 23015 --change_map Town03_ethucy \
+--go_to_zara_anchor --set_weather
+$ mkdir ethucy_carla_pedestrian/
+```
+
+zara calibrations:
+```
+# the first command plots into carla, the second generates a new file
+$ python code/plot_traj_carla.py ethucy_trajs/world/crowds_zara01.txt \
+0 -44.0511921243 -79.6225002047 0. -3.0428182023594172 \
+--world_rotate 270 --scale 1.2
+$ python code/plot_traj_carla.py ethucy_trajs/world/crowds_zara01.txt \
+0 -44.0511921243 -79.6225002047 0. -3.0428182023594172 \
+--world_rotate 270 --scale 1.2 ethucy_carla_pedestrian/zara01.txt
+```
+
+eth:
+```
+$ python code/plot_traj_carla.py ethucy_trajs/world/seq_eth.txt \
+850 32 -53.0 8.25534259124 2.4 --world_rotate 0 --scale 1.2 \
+ethucy_carla_pedestrian/eth.txt
+```
+
+hotel:
+```
+$ python code/plot_traj_carla.py ethucy_trajs/world/seq_hotel.txt \
+0 72.2222050133 -109.035342615 8.248 92.53 --world_rotate 0 --scale 1.0 \
+ethucy_carla_pedestrian/hotel.txt
+```
+
 
 ### Step 3, run simulations to remove scenarios with collisions
 Start the CARLA server if you haven't already. To check individual scenarios, start a spectator first:

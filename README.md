@@ -24,7 +24,7 @@ If you find this code useful in your research then please cite
   year={2020}
 }
 @inproceedings{liang2020simaug,
-  title={SimAug: Data-Free Learning of Robust Representations for Trajectory Prediction},
+  title={SimAug: Learning Robust Representations from Simulation for Trajectory Prediction},
   author={Liang, Junwei and Jiang, Lu and Hauptmann, Alexander},
   booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
   month = {August},

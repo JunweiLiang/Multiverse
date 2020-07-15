@@ -1,6 +1,6 @@
 # Multiverse
 
-This repository contains the code and models for the following paper:
+This repository contains the code and models for the following CVPR'20 paper:
 
 **[The Garden of Forking Paths: Towards Multi-Future Trajectory Prediction](https://arxiv.org/abs/1912.06445)** \
 [Junwei Liang](https://www.cs.cmu.edu/~junweil/),
@@ -10,6 +10,8 @@ This repository contains the code and models for the following paper:
 [Alexander Hauptmann](https://www.cs.cmu.edu/~alex/)
 
 You can find more information at our [Project Page](https://next.cs.cmu.edu/multiverse/) and the [blog](https://medium.com/@junweil/cvpr20-the-garden-of-forking-paths-towards-multi-future-trajectory-prediction-df23221dc9f8).
+
+The **SimAug** (ECCV'20) project is [here](SimAug/README.md).
 
 If you find this code useful in your research then please cite
 
@@ -22,9 +24,9 @@ If you find this code useful in your research then please cite
   year={2020}
 }
 @inproceedings{liang2020simaug,
-  title={SimAug: Learning Robust Representations from 3D Simulation for Pedestrian Trajectory Prediction in Unseen Cameras},
+  title={SimAug: Data-Free Learning of Robust Representations for Trajectory Prediction},
   author={Liang, Junwei and Jiang, Lu and Hauptmann, Alexander},
-  booktitle={Proceedings of the European conference on computer vision (ECCV)},
+  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
   month = {August},
   year={2020}
 }

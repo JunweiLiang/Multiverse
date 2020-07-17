@@ -103,7 +103,7 @@ $ python code/visualize_multifuture_dataset.py next_x_v1_dataset/rgb_videos/ \
 
 
 ## Record More Annotations
-In this section, I will show you how to use our code and [CARLA](https://carla.org) simulator to get more human annotations like the following.
+In this section, I will show you how to use our code and [CARLA](https://carla.org) simulator to get more human annotations like the following. [Here](../images/annotation_environment.jpg) was our annotation environment.
 
 <div align="center">
   <div style="">

@@ -65,6 +65,17 @@ if __name__ == "__main__":
   # 1. get all the traj_id and the corresponding future videos
   traj_ids_to_videonames = get_obs_videonames(all_videonames)
 
+  exists_traj_ids_to_videonames = []
+  for traj_id in traj_ids_to_videonames:
+    if os.path.exists(os.path.join(args.gt_path, "%s.p" % traj_id)):
+      exists_traj_ids_to_videonames.append(traj_id)
+    else:
+      print("warning, ignoring %s.." % traj_id)
+
+  traj_ids_to_videonames = {traj_id:traj_ids_to_videonames[traj_id]
+                            for traj_id in traj_ids_to_videonames
+                            if traj_id in exists_traj_ids_to_videonames}
+
   for traj_id in tqdm(traj_ids_to_videonames.keys()):
     target_path = os.path.join(args.out_video_path, "%s" % traj_id)
     if not os.path.exists(target_path):

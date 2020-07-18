@@ -46,7 +46,7 @@ This dataset is for multi-future trajectory prediction. The common experiment se
 ## Prepare Data
 Here are instructions to prepare data for testing like the [Next-Prediction](https://github.com/google/next-prediction) repo.
 
-+ Assuming you have the dataset in this folder
++ Download the dataset according to [here](../README.md#the-forking-paths-dataset). Assuming you have the dataset in this folder
 ```
 $ tar -zxvf ForkingPaths_dataset_v1.tgz
 ```

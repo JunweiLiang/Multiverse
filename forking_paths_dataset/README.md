@@ -280,6 +280,7 @@ $ tar -zxvf final_annos.tgz; tar -zxvf actev_homography_0502to0500.tgz
 
 Compute ground plane trajectories with the homography matrics:
 ```
+$ mkdir actev_trajs/
 $ python code/combine_traj.py final_annos/actev_annos/virat_2.5fps_resized_allfeature/ \
  actev_trajs/pixel actev_trajs/all_frames.json --is_actev \
  --h_path actev_homography_0502to0500 --target_w_path actev_trajs/world
@@ -299,6 +300,7 @@ actev_homography_0502to0500/ actev_vehicle_trajs
 For ETH/UCY (ZARA1, ZARA2, ETH, HOTEL), this is how you get the world coordinates:
 ```
 # do the following for eth,hotel,zara1,zara2
+$ mkdir ethucy_trajs/
 $ python code/combine_traj.py final_annos/ucyeth_annos/original_trajs/eth/ \
  ethucy_trajs/world ethucy_trajs/all_frames.json --reverse_xy
 $ cp -r final_annos/ucyeth_annos/traj_pixels ethucy_trajs/pixel
@@ -343,24 +345,25 @@ zara calibrations:
 # the first command plots into carla, the second generates a new file
 $ python code/plot_traj_carla.py ethucy_trajs/world/crowds_zara01.txt \
 0 -44.0511921243 -79.6225002047 0. -3.0428182023594172 \
---world_rotate 270 --scale 1.2
+--world_rotate 270 --scale 1.2 --port 23015
 $ python code/plot_traj_carla.py ethucy_trajs/world/crowds_zara01.txt \
 0 -44.0511921243 -79.6225002047 0. -3.0428182023594172 \
---world_rotate 270 --scale 1.2 ethucy_carla_pedestrian/zara01.txt
+--world_rotate 270 --scale 1.2 \
+--save_carla_traj_file ethucy_carla_pedestrian/zara01.txt
 ```
 
 eth:
 ```
 $ python code/plot_traj_carla.py ethucy_trajs/world/seq_eth.txt \
 850 32 -53.0 8.25534259124 2.4 --world_rotate 0 --scale 1.2 \
-ethucy_carla_pedestrian/eth.txt
+--save_carla_traj_file ethucy_carla_pedestrian/eth.txt
 ```
 
 hotel:
 ```
 $ python code/plot_traj_carla.py ethucy_trajs/world/seq_hotel.txt \
 0 72.2222050133 -109.035342615 8.248 92.53 --world_rotate 0 --scale 1.0 \
-ethucy_carla_pedestrian/hotel.txt
+--save_carla_traj_file ethucy_carla_pedestrian/hotel.txt
 ```
 
 

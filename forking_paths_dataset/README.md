@@ -366,6 +366,11 @@ $ python code/plot_traj_carla.py ethucy_trajs/world/seq_hotel.txt \
 --save_carla_traj_file ethucy_carla_pedestrian/hotel.txt
 ```
 
+To take a look at what the moments look like, try this:
+```
+$ python code/build_moment.py ethucy_carla_pedestrian/zara01.txt 0 200 --port 23015
+```
+This will run the simulation from frame 0 to 200 for the ZARA01 scene. You may notice a lot of collisions, which may be due to homography matrix error, simulation error, etc. Follow the next step to filter them.
 
 ### Step 3, run simulations to remove scenarios with collisions
 Start the CARLA server if you haven't already. To check individual scenarios, start a spectator first:
@@ -381,7 +386,7 @@ $ python code/build_moment.py actev_carla_pedestrian/VIRAT_S_000000.txt \
 --vehicle_z 0.2 --port 23015
 ```
 
-It is not practical to manually check every reconstructed scenarios. Run the following to get scenarios that are collision-free so that we could use them for candidates for human annotations:
+It is not practical to manually check every reconstructed scenarios. Run the following to get scenarios that are collision-free so that we could use them for candidates for human annotations (and also the CARLA world coordinates will be converted to agent controls):
 ```
 $ python code/auto_moment_candidates.py actev_carla_pedestrian/ --is_actev \
 --vehicle_traj_path actev_carla_vehicle/ --moment_length 15.2 --test_skip 10 \

@@ -50,6 +50,7 @@ This paper studies the problem of predicting the distribution over multiple poss
 + Current dataset version: v1
 
 + Download links: [Google Drive](https://drive.google.com/file/d/1yESCQuIdiDNanUSX0qDyzbBRe_AeZB5a/view?usp=sharing) ([sha256sum](https://next.cs.cmu.edu/multiverse/dataset/ForkingPaths_dataset_v1.sha256sum.txt))
+[Baidu Pan](https://pan.baidu.com/s/1nuc726hX8bUBXmMRj6UBJw) (提取码: tpd7)
 
 + The dataset includes 3000 1920x1080 videos (750 human-annotated trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth. More notes and instructions about the dataset can be found [here](forking_paths_dataset/README.md#annotations).
 

@@ -39,7 +39,7 @@ If you find this code useful in your research then please cite
       <img src="images/prob.gif" height="300px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
-    Problem Description: Multi-future Trajectory Prediction
+    This paper proposes the first multi-future pedestrian trajectory prediction dataset and a multi-future prediction method called Multiverse.
   </p>
 </div>
 

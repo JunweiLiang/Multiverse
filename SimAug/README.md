@@ -27,7 +27,7 @@ If you find this code useful in your research then please cite
       <img src="../images/prob_simaug.gif" height="300px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
-    SimAug - Simulation as Augmentation for Trajectory Prediction
+    This paper focuses on the problem of predicting pedestrian future trajectories in unseen scenarios and camera views.
   </p>
 </div>
 

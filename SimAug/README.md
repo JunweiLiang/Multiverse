@@ -76,7 +76,7 @@ Instructions for testing pretrained models can be [found here](TESTING.md).
 
 <div align="center">
   <div style="">
-      <img src="../images/eccv2020_qualitative.gif" height="160px" />
+      <img src="../images/eccv2020_qualitative.gif" height="220px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
     Qualitative analysis between baseline (blue) and SimAug trained model (orange).

@@ -60,8 +60,8 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 <div align="center">
   <div style="">
-      <img src="images/multi_view_v2.gif" height="240px" />
-      <img src="images/multi_view2_v2.gif" height="240px" />
+      <img src="images/multi_view_v2.gif" height="210px" />
+      <img src="images/multi_view2_v2.gif" height="210px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
     <a href="http://www.youtube.com/watch?feature=player_embedded&v=RW45YQHxIhk" target="_blank">Demo Video</a>

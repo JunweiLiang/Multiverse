@@ -31,7 +31,7 @@ If you find this code useful in your research then please cite
   </p>
 </div>
 
-This paper studies the problem of predicting future trajectories of people in unseen cameras of novel scenarios and views. We approach this problem through the real-data-free setting in which the model is trained only on 3D simulation data and applied out-of-the-box to a wide variety of real cameras. We propose a novel approach to learn robust representation through augmenting the simulation training data such that the representation can better generalize to unseen real-world test data. The key idea is to mix the feature of the hardest camera view with the adversarial feature of the original view. We refer to our method as **SimAug**. We show that SimAug achieves promising results on three real-world benchmarks using zero real training data, and state-of-the-art performance in the Stanford Drone and the VIRAT/ActEV dataset when using in-domain training data. Checkout our ECCV'20 presentation [here](https://www.youtube.com/watch?v=m6Jd99qUazc).
+This paper studies the problem of predicting future trajectories of people in unseen cameras of novel scenarios and views. We approach this problem through the real-data-free setting in which the model is trained only on 3D simulation data and applied out-of-the-box to a wide variety of real cameras. Checkout our ECCV'20 presentation [here](https://www.youtube.com/watch?v=m6Jd99qUazc).
 
 # Dataset
 
@@ -61,3 +61,27 @@ Here we provide the link to the multi-view trajectory dataset for download.
   </div>
   <br/>
 </div>
+
+We propose a novel approach to learn robust representation through augmenting the simulation training data such that the representation can better generalize to unseen real-world test data. The key idea is to mix the feature of the hardest camera view with the adversarial feature of the original view. We refer to our method as **SimAug**. We show that SimAug achieves promising results on three real-world benchmarks using zero real training data, and state-of-the-art performance in the Stanford Drone and the VIRAT/ActEV dataset when using in-domain training data.
+
+## Dependencies
++ Python 2/3; TensorFlow-GPU >= 1.15.0
+
+## Pretrained Models
+You can download pretrained models by running the script
+`bash scripts/download_single_models.sh`.
+
+## Testing and Visualization
+Instructions for testing pretrained models can be [found here](TESTING.md).
+
+<div align="center">
+  <div style="">
+      <img src="../images/eccv2020_qualitative.gif" height="160px" />
+  </div>
+  <p style="font-weight:bold;font-size:1.2em;">
+    Qualitative analysis between baseline (blue) and SimAug trained model (orange).
+  </p>
+</div>
+
+## Training new models
+Instructions for training new models can be [found here](TRAINING.md).

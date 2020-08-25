@@ -38,6 +38,7 @@ This paper studies the problem of predicting future trajectories of people in un
 Here we provide the link to the multi-view trajectory dataset for download.
 
 + Download links: [Google Drive](https://drive.google.com/file/d/1AgMXXI7VKcB9sqvuWnkW7RlWJOtxlq-Y/view?usp=sharing)
+/
 [Baidu Pan](https://pan.baidu.com/s/1nuc726hX8bUBXmMRj6UBJw) (提取码: tpd7)
 
 + The dataset includes 5628 1920x1080 videos (1407 reconstructed trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth.
@@ -45,14 +46,14 @@ Here we provide the link to the multi-view trajectory dataset for download.
 <div align="center">
   <div style="">
       <img src="../images/multi_view_anchor.gif" height="255px" />
-      <img src="../images/eccv2020_data.png" height="255px" />
+      <img src="../images/eccv2020_data.png" height="260px" />
   </div>
   <p style="font-weight:bold;font-size:1.2em;">
     Multi-view trajectories reconstructed from the VIRAT dataset.
   </p>
 </div>
 
-# The SimAug Algorithm
+# The *SimAug* Algorithm
 
 <div align="center">
   <div style="">

@@ -39,7 +39,7 @@ Here we provide the link to the multi-view trajectory dataset for download.
 
 + Download links: [Google Drive](https://drive.google.com/file/d/1AgMXXI7VKcB9sqvuWnkW7RlWJOtxlq-Y/view?usp=sharing)
 /
-[Baidu Pan](https://pan.baidu.com/s/1nuc726hX8bUBXmMRj6UBJw) (提取码: tpd7)
+[Baidu Pan](https://pan.baidu.com/s/1v4Jo1ZZhE-_fMO6l6axsjQ) (提取码: 6sk5)
 
 + The dataset includes 5628 1920x1080 videos (1407 reconstructed trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth.
 
@@ -71,7 +71,7 @@ We propose a novel approach to learn robust representation through augmenting th
 You can download pretrained models by running the script
 `bash scripts/download_single_models.sh`.
 
-## Testing and Visualization
+## Testing
 Instructions for testing pretrained models can be [found here](TESTING.md).
 
 <div align="center">

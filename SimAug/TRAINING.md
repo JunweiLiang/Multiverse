@@ -53,7 +53,7 @@ $ python train.py anchor_actev_4view_videos/prepro simaug_my_model/ modelname \
 --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 \
 --batch_size 12 --init_lr 0.3 --use_gnn --learning_rate_decay 0.95 \
---num_epoch_per_decay 5.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.5 \
+--num_epoch_per_decay 8.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.5 \
 --save_period 3000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 \
 --scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --train_w_onehot \
 --adv_epsilon 0.1 --mixup_alpha 0.2 --multiview_train --multiview_exp 3 --gpuid 0

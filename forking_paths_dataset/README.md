@@ -19,7 +19,8 @@ Here are the resources listed in the rest of the sections for downloading:
 4. [Record More Annotations](#record-more-annotations)
 5. [Edit the Maps](#edit-the-maps)
 6. [Recreate Scenarios from Real-world Videos](#recreate-scenarios-from-real-world-videos)
-7. [Future Work](#future-work)
+7. [Change Agent Trajectories](#change-agent-trajectories)
+8. [Future Work](#future-work)
 
 
 ## Annotations
@@ -407,6 +408,10 @@ actev_final/0000.fixed.json --is_actev --video_fps 30 --annotation_fps 2.5 \
 Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. Click "x" to set the current selected agent as "x agent" (the agent that will be "embodied" by human annotator).
 See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev_final/0000.fixed.json`.
 This is how we get the [scenarios before human annotations](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz).
+
+## Change Agent Trajectories
+To manually change all agents trajectories of the forking path dataset, you can do so with the moment editor to get new JSON data files. Specifically, follow [Step 4](#step-4-manually-check-the-filtered-scenarios-and-prepare-for-multi-future-annotations) of the previous section to open the original trajectory control files with `moment_editor.py`, and then edit the trajectories accordingly. A new JSON data file will be saved. Then you can follow [this step](#step-5-now-that-we-have-the-annotations-we-could-record-videos) to record new videos and annotations.
+
 
 ## Future Work
 Many exciting directions can be explored based on this work.

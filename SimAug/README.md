@@ -85,3 +85,6 @@ Instructions for testing pretrained models can be [found here](TESTING.md).
 
 ## Training new models
 Instructions for training new models can be [found here](TRAINING.md).
+
+## Preprocessing the SDD/Argoverse Dataset
+Instructions for processing these can be [found here](PREPRO.md). We have already provided the preprocessed files in the testing instructions.

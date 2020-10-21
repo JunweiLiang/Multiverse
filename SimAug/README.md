@@ -42,6 +42,7 @@ Here we provide the link to the multi-view trajectory dataset for download.
 [Baidu Pan](https://pan.baidu.com/s/1v4Jo1ZZhE-_fMO6l6axsjQ) (提取码: 6sk5)
 
 + The dataset includes 5628 1920x1080 videos (1407 reconstructed trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth.
++ Check out this [code](https://github.com/JunweiLiang/Multiverse/blob/master/SimAug/code/pred_utils.py#L305-L327) to see how the videos are named and how to get multi-view data for the same sample.
 
 <div align="center">
   <div style="">

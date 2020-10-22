@@ -44,7 +44,7 @@ Here we provide the link to the multi-view trajectory dataset for download.
 + The dataset includes 5628 1920x1080 videos (1407 reconstructed trajectory samples in 4 camera views) with bounding boxes and scene semantic segmentation ground truth.
 + Video file naming:
 Example: VIRAT_S_040000_03_000221_000372_F_1879_obs12_pred16_cam1.mp4
-everything before "\_F\_" is the video filename from the original VIRAT dataset, i.e., [videoname]\_F\_[frame_idx]\_obs12\_pred16\_cam[camera_idx, 1-4].
+everything before "\_F\_" is the video filename from the original VIRAT dataset, i.e., [videoname]\_F\_[start_frame_idx]\_obs12\_pred16\_cam[camera_idx, 1-4].
 
 <div align="center">
   <div style="">

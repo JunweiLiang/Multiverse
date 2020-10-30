@@ -18,7 +18,7 @@ $ tar -zxvf packed_models_eccv2020.tgz
 The following is for ActEv experiments.
 
 ```
-$ python code/test.py packed_prepro/actev_prepro/ ../packed_models/ best_simaug_model \
+$ python code/test.py packed_prepro/actev_prepro/ packed_models/ best_simaug_model \
 --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 \
 --batch_size 12 --init_lr 0.3 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 5.0 \
@@ -43,7 +43,7 @@ The evaluation result should be:
 The following is for Stanford Drone experiments.
 
 ```
-$ python code/test.py packed_prepro/sdd_prepro/ ../packed_models/ best_simaug_model \
+$ python code/test.py packed_prepro/sdd_prepro/ packed_models/ best_simaug_model \
 --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 \
 --batch_size 12 --init_lr 0.3 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 5.0 \
@@ -73,7 +73,7 @@ The evaluation result should be:
 The following is for Argoverse:
 
 ```
-$ python code/test.py packed_prepro/argoverse_prepro/ ../packed_models/ best_simaug_model \
+$ python code/test.py packed_prepro/argoverse_prepro/ packed_models/ best_simaug_model \
 --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 \
 --batch_size 12 --init_lr 0.3 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 5.0 \
@@ -99,7 +99,7 @@ The evaluation result should be:
 The following is for ActEv experiments.
 
 ```
-$ python code/test.py packed_prepro/actev_prepro/ ../packed_models/ best_actev_finetuned \
+$ python code/test.py packed_prepro/actev_prepro/ packed_models/ best_actev_finetuned \
 --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 \
 --batch_size 12 --init_lr 0.3 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 5.0 \

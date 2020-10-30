@@ -12,7 +12,11 @@ parser.add_argument("outp")
 parser.add_argument("--eval_grid", type=int, default=0)
 
 def parse_seq_id(seq_id):
-  stuff = seq_id.decode().split("_")
+  if str(type(seq_id)) == "<class 'numpy.str_'>":
+    stuff = seq_id.split("_")
+    print(seq_id, stuff)
+  else:
+    stuff = seq_id.decode().split("_")
   return "_".join(stuff[:2]), stuff[-2], stuff[-1]
 
 if __name__ == "__main__":
@@ -49,7 +53,7 @@ if __name__ == "__main__":
 
     # changing the scale
     # so if original resolution is higher than 1920x1080,
-    # the error should be scaled up
+    # the error should be linearly scaled up
     diff *= resized[video_id]
     scale_changes.append(resized[video_id])
 

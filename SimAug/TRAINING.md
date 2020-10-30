@@ -72,7 +72,7 @@ $ tar -zxvf packed_prepro_trainval_sddactev_eccv2020.tgz
 
 Or you can follow [this instruction](PREPRO.md) to get the train/val.npz for SDD yourself. To get ActEV prepro files, we utilize the [Multiverse Model](https://github.com/JunweiLiang/Multiverse/blob/master/TRAINING.md#step-1-preprocess) repo.
 
-Then download SimAug-trained model:
+Then download SimAug-trained model if you have not done so:
 ```
 $ wget https://next.cs.cmu.edu/data/packed_models_eccv2020.tgz
 $ tar -zxvf packed_models_eccv2020.tgz
@@ -82,12 +82,26 @@ $ tar -zxvf packed_models_eccv2020.tgz
 
 Finetuning from the SimAug-trained model (single model):
 ```
-$ python code/train.py sddactev_trainval/sdd_fold1/ simaug_my_finetune sdd_modelname --load_from packed_models/best_simaug_model/00/best/ --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 5 --batch_size 20 --init_lr 0.01 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 --scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --train_w_onehot --gpuid 0
+$ python code/train.py sddactev_trainval/sdd_fold1/ simaug_my_finetune \
+sdd_modelname --load_from packed_models/best_simaug_model/00/best/ --wd 0.001 \
+--runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
+--dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 5 \
+--batch_size 20 --init_lr 0.01 --use_gnn --learning_rate_decay 0.95 \
+--num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 \
+--save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim \
+64 --scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --train_w_onehot \
+--gpuid 0
 ```
 
 Test:
 ```
-$ python code/test.py packed_prepro/sdd_prepro/ simaug_my_finetune sdd_modelname --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 5 --batch_size 20 --init_lr 0.01 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 --scene_grid_strides 2,4 --use_grids 1,0 --gpuid 0 --save_output sdd_finetune.p
+$ python code/test.py packed_prepro/sdd_prepro/ simaug_my_finetune sdd_modelname \
+--wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 \
+--dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 5 \
+--batch_size 20 --init_lr 0.01 --use_gnn --learning_rate_decay 0.95 \
+--num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 \
+--save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim \
+64 --scene_grid_strides 2,4 --use_grids 1,0 --gpuid 0 --save_output sdd_finetune.p
 ```
 
 Eval:
@@ -99,10 +113,23 @@ $ python code/evaluate_sdd.py packed_prepro/resized.lst sdd_out_finetune.p
 
 Finetuning from the SimAug-trained model (single model):
 ```
-$ python code/train.py sddactev_trainval/actev/ simaug_my_finetune actev_modelname --load_from packed_models/best_simaug_model/00/best/ --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 --batch_size 20 --init_lr 0.05 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 --scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --train_w_onehot --gpuid 0
+$ python code/train.py sddactev_trainval/actev/ simaug_my_finetune actev_modelname \
+ --load_from packed_models/best_simaug_model/00/best/ --wd 0.001 --runId 0 \
+ --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 --dec_hidden_size \
+ 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 --batch_size 20 \
+ --init_lr 0.05 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 \
+ --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 1000 --scene_h 36 \
+ --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 --scene_grid_strides 2,4 \
+ --use_grids 1,0 --val_grid_num 0 --train_w_onehot --gpuid 0
 ```
 
 Test:
 ```
-$ python code/test.py packed_prepro/actev_prepro/ simaug_my_finetune actev_modelname --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 --enc_hidden_size 256 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 --num_epochs 30 --batch_size 20 --init_lr 0.05 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 --save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 --scene_grid_strides 2,4 --use_grids 1,0 --gpuid 0
+$ python code/test.py packed_prepro/actev_prepro/ simaug_my_finetune \
+actev_modelname --wd 0.001 --runId 0 --obs_len 8 --pred_len 12 --emb_size 32 \
+--enc_hidden_size 256 --dec_hidden_size 256 --activation_func tanh --keep_prob 1.0 \
+--num_epochs 30 --batch_size 20 --init_lr 0.05 --use_gnn --learning_rate_decay 0.95 \
+ --num_epoch_per_decay 2.0 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.1 \
+ --save_period 1000 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 \
+ --scene_conv_dim 64 --scene_grid_strides 2,4 --use_grids 1,0 --gpuid 0
 ```

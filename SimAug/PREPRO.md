@@ -58,7 +58,11 @@ deeplabv3_xception_ade20k_train/frozen_inference_graph.pb scene_seg_36x64 \
 
 6. Preprocess and get all the npz files
 ```
-$ python code/preprocess.py prepared_data_fold1/traj_2.5fps/ prepro_fold1 --obs_len 8 --pred_len 12 --add_scene --scene_feat_path scene_seg_36x64/ --direct_scene_feat --scene_id2name packed_prepro/scene36_64_id2name_top10.json --scene_h 36 --scene_w 64 --grid_strides 2,4 --video_h 1080 --video_w 1920 --add_grid --add_all_reg
+$ python code/preprocess.py prepared_data_fold1/traj_2.5fps/ prepro_fold1 \
+--obs_len 8 --pred_len 12 --add_scene --scene_feat_path scene_seg_36x64/ \
+--direct_scene_feat --scene_id2name packed_prepro/scene36_64_id2name_top10.json \
+ --scene_h 36 --scene_w 64 --grid_strides 2,4 --video_h 1080 --video_w 1920 \
+ --add_grid --add_all_reg
 ```
 
 Now you can follow [this](TRAINING.md#sdd) to do training and testing.

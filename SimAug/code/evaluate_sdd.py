@@ -14,7 +14,6 @@ parser.add_argument("--eval_grid", type=int, default=0)
 def parse_seq_id(seq_id):
   if str(type(seq_id)) == "<class 'numpy.str_'>":
     stuff = seq_id.split("_")
-    print(seq_id, stuff)
   else:
     stuff = seq_id.decode().split("_")
   return "_".join(stuff[:2]), stuff[-2], stuff[-1]
@@ -38,7 +37,7 @@ if __name__ == "__main__":
 
   # [N, T_pred, 2]
   pred_gt = np.array(data["pred_gt_list"])
-  print(pred_gt.shape)
+  #print(pred_gt.shape)
   pred_traj = np.array(data["grid%s_pred_traj" % args.eval_grid])
 
   diffs = []

@@ -70,6 +70,7 @@ The evaluation result should be:
   </tr>
 </table>
 
+
 The following is for Argoverse:
 
 ```
@@ -79,7 +80,8 @@ $ python code/test.py packed_prepro/argoverse_prepro/ packed_models/ best_simaug
 --batch_size 12 --init_lr 0.3 --use_gnn --learning_rate_decay 0.95 --num_epoch_per_decay 5.0 \
 --grid_loss_weight 1.0 --grid_reg_loss_weight 0.5 --save_period 3000 \
 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 \
---scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --gpuid 0 --load_best
+--scene_grid_strides 2,4 --use_grids 1,0 --val_grid_num 0 --gpuid 0 --load_best \
+--save_output argoverse_out.p
 ```
 The evaluation result should be:
 <table>
@@ -94,6 +96,25 @@ The evaluation result should be:
     <td>178.886694</td>
   </tr>
 </table>
+
+### Visualization
+To visualize the outputs on SDD or Argoverse, first follow [here](PREPRO.md) to get the video frames (`resized_videos_frames` and `val_frames_renamed`) for both datasets.
+
+We save the prediction output in `sdd_out.p` and `argoverse_out.p` during inference. Now we need to make a file with path to the output file and its trajectory color (BGR, separated with `_`):
+```
+$ echo $PWD/sdd_out.p,0_0_255 > sdd_run.lst
+$ echo $PWD/argoverse_out.p,0_0_255 > argoverse_run.lst
+```
+
+Visualize a fix amount of trajectory samples (Note the color will be ignored if you want heatmap visualization as the paper):
+```
+$ python code/visualize_output.py sdd_run.lst resized_videos_frames \
+sdd_vis_heatmap/ --vis_num 100 --use_heatmap
+$ python code/visualize_output.py argoverse_run.lst val_frames_renamed \
+argoverse_vis_heatmap/ --vis_num 100 --use_heatmap
+```
+The code will use the video frame at the first observation timestep for visualization.
+
 
 ### Test ActEV-Finetuned Model
 The following is for ActEv experiments.

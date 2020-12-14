@@ -4,7 +4,7 @@ These instructions create `data_*.npz` files for SDD and Argoverse.
 
 ## SDD
 
-First download the videos from the [website](https://cvgl.stanford.edu/projects/uav_data/).
+First download the videos from the [website](https://cvgl.stanford.edu/projects/uav_data/). Note that we used random split instead of the [TrajNet](http://trajnet.stanford.edu/) split in the paper and only pedestrian trajectories are used.
 
 1. Resize and rotate videos to 1920x1080 and remember the changes. Need ffmpeg.
 ```

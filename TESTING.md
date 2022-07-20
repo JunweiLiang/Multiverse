@@ -89,7 +89,7 @@ model1_output.traj.p --save_prob_file model1_output.prob.p \
 --use_scene_enc --scene_id2name prepared_data/scene36_64_id2name_top10.json \
 --scene_feat_path forking_paths_dataset/next_x_v1_dataset_prepared_data/obs_data/scene_seg/ \
 --scene_h 36 --scene_w 64 --scene_conv_kernel 3 --scene_conv_dim 64 \
---grid_strides 2,4 --use_grids 1,0 --num_out 20 --diverse_beam \
+--grid_strides 2,4 --use_grids 1,0 --num_out 20 --diverse_beam --use_gnn \
 --diverse_gamma 0.01 --fix_num_timestep 1 --gpuid 0
 ```
 

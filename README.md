@@ -13,6 +13,8 @@ You can find more information at our [Project Page](https://next.cs.cmu.edu/mult
 
 The **SimAug** (ECCV'20) project is [here](SimAug/README.md).
 
++ *[11/2022] CMU server is down. You can replace all `https://next.cs.cmu.edu` with `https://precognition.team/next/` to download necessary resources (I did not back up the pretrained models. Please open an issue and share with me the model tgzs if you have downloaded them from the CMU server before).*
+
 If you find this code useful in your research then please cite
 
 ```

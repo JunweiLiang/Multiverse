@@ -16,7 +16,7 @@ $ python code/resize_rotate_sdd.py all_videos.lst resized_videos resized.lst
 2. Get the random 5-fold data split used in the paper. We'll just use 1 fold.
 ```
 $ find $PWD/resized_videos -name "*.mp4" > resized_videos.lst
-$ wget https://next.cs.cmu.edu/data/sdd_data_splits_eccv2020.tgz
+$ wget https://precognition.team/next/data/sdd_data_splits_eccv2020.tgz
 $ tar -zxvf sdd_data_splits_eccv2020.tgz
 ```
 

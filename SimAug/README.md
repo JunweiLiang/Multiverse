@@ -7,7 +7,7 @@ This repository contains the code and models for the following ECCV'20 paper:
 [Lu Jiang](http://www.lujiang.info/),
 [Alexander Hauptmann](https://www.cs.cmu.edu/~alex/)
 
-You can find more information at our [Project Page](https://next.cs.cmu.edu/simaug/).
+You can find more information at our [Project Page](https://precognition.team/next/simaug/).
 
 If you find this code useful in your research then please cite
 

@@ -4,13 +4,13 @@ We experimented on the [ActEv dataset](https://actev.nist.gov), [Stanford Drone 
 
 First download the pre-processed data for all the datasets:
 ```
-$ wget https://next.cs.cmu.edu/data/packed_prepro_eccv2020.tgz
+$ wget https://precognition.team/next/data/packed_prepro_eccv2020.tgz
 $ tar -zxvf packed_prepro_eccv2020.tgz
 ```
 
 Then download SimAug-trained model:
 ```
-$ wget https://next.cs.cmu.edu/data/packed_models_eccv2020.tgz
+$ wget https://precognition.team/next/data/packed_models_eccv2020.tgz
 $ tar -zxvf packed_models_eccv2020.tgz
 ```
 

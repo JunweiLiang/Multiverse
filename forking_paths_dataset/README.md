@@ -5,9 +5,9 @@ Download the dataset according to [this](../README.md#the-forking-paths-dataset)
 This is the ForkingPaths dataset rendered in rain just for fun: \[[ForkingPaths_v1_in_Rain](https://drive.google.com/file/d/1Iw0OyVWnJd3XaKmYlO3JBxPFEbLiaf_e/view?usp=sharing)\].
 Here are the resources listed in the rest of the sections for downloading:
 \[[CARLA_0.9.6_Compiled](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) from [CARLA](https://github.com/carla-simulator/carla/releases/tag/0.9.6)\],
-\[[Our_Edited_Maps](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz)\],
-\[[Our_Recreated_Scenarios_Before_Annotation](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz)\],
-\[[ForkingPaths_v1_Annotation](https://next.cs.cmu.edu/multiverse/dataset/forkingpaths_moments_v1.tgz)\],
+\[[Our_Edited_Maps](https://precognition.team/next/multiverse/dataset/multiverse_maps_and_statics.tgz)\],
+\[[Our_Recreated_Scenarios_Before_Annotation](https://precognition.team/next/multiverse/dataset/multiverse_scenarios_v1.tgz)\],
+\[[ForkingPaths_v1_Annotation](https://precognition.team/next/multiverse/dataset/forkingpaths_moments_v1.tgz)\],
 \[[Anchor_Videos](https://drive.google.com/file/d/16E85MAOqwIGCnKKLDAzQ4Q3cMjS27mrG/view?usp=sharing)\],
 \[[Our_Entire_CARLA_Workspace](https://drive.google.com/file/d/18zIMtWpmaq4nYHpdrTxNPFwE7EgK13qU/view?usp=sharing)\],
 
@@ -119,10 +119,10 @@ In this section, I will show you how to use our code and [CARLA](https://carla.o
 In order to simulate a **scenario** (in the code it is referred to as "moment") where a number of "Person" and "Vehicle" agents navigate in the scene for a period of time, the simulator needs to know exactly how to control each agent at each time frame. For "Person" agent the control means the direction and velocity. For "Vehicle" agent, we teleport them to the desire location and remove the physics simulation for simplicity (As of CARLA 0.9.6, it is not trivial to accurately convert direction and velocity to vehicle controls like throttling and steering. And teleporting looks smooth enough if we do it at every time frame.) So basically we need: 1. the **static map**, 2. the **full control records** of every agents at all time frames, for the simulation to run. To get human-annotated multi-future trajectories, the idea is to first recreate a plausible scenario that resembles the real-world, and then ask a human annotator to "drop-in" or "embody" a "Person" agent, and control such an agent to continue to a destination. The control record of the human annotator along with other agents' are saved as a JSON file. We leave multi-human simultaneous annotation to future work. The following requires Python3.
 
 ### Step 1, prepare and test the CARLA simulator
-Get the CARLA simulator from [here](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) and our edited maps from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz) or by:
+Get the CARLA simulator from [here](http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz) and our edited maps from [here](https://precognition.team/next/multiverse/dataset/multiverse_maps_and_statics.tgz) or by:
 ```
 $ wget http://carla-assets-internal.s3.amazonaws.com/Releases/Linux/CARLA_0.9.6.tar.gz
-$ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_maps_and_statics.tgz
+$ wget https://precognition.team/next/multiverse/dataset/multiverse_maps_and_statics.tgz
 ```
 Put the maps into the CARLA package:
 ```
@@ -146,10 +146,10 @@ Both windows should be switched to a new map. For full keyboard and mouse contro
 
 ### Step 2, get recreated scenarios
 To add more human annotations, we start with recreated scenarios (We will talk about how to create scenarios from real-world videos or from scratch in the next section).
-Download the scenarios from [here](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
+Download the scenarios from [here](https://precognition.team/next/multiverse/dataset/multiverse_scenarios_v1.tgz) or by:
 
 ```
-$ wget https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz
+$ wget https://precognition.team/next/multiverse/dataset/multiverse_scenarios_v1.tgz
 # sha256sum: f25a02f3a362c8e05823f17b20e5c12224be0559849f46ae3143abc1828f8051
 ```
 
@@ -215,7 +215,7 @@ Click "[" or "]" to cycle through the annotated trajectories. Click "g" to repla
   </p>
 </div>
 
-[Here](https://next.cs.cmu.edu/multiverse/dataset/forkingpaths_moments_v1.tgz) are the final annotated JSONs of the **ForkingPaths dataset v1**.
+[Here](https://precognition.team/next/multiverse/dataset/forkingpaths_moments_v1.tgz) are the final annotated JSONs of the **ForkingPaths dataset v1**.
 
 ### Step 5, now that we have the annotations, we could record videos!
 
@@ -274,8 +274,8 @@ Given real-world videos with homography matrics between the video frame and the 
 ### Step 1, get person & vehicle trajectories in world coordinates
 Download trajectory data from [Next-Prediction](https://github.com/google/next-prediction) and homography matrics (note that we use 0502 scene's homography matrix to replace 0500's since the original one is not accurate):
 ```
-$ wget https://next.cs.cmu.edu/data/final_annos.tgz
-$ wget https://next.cs.cmu.edu/multiverse/dataset/actev_homography_0502to0500.tgz
+$ wget https://precognition.team/next/data/final_annos.tgz
+$ wget https://precognition.team/next/multiverse/dataset/actev_homography_0502to0500.tgz
 $ tar -zxvf final_annos.tgz; tar -zxvf actev_homography_0502to0500.tgz
 ```
 
@@ -289,7 +289,7 @@ $ python code/combine_traj.py final_annos/actev_annos/virat_2.5fps_resized_allfe
 
 Get the vehicle trajectories:
 ```
-$ wget https://next.cs.cmu.edu/data/actev-v1-drop4-yaml.tgz
+$ wget https://precognition.team/next/data/actev-v1-drop4-yaml.tgz
 $ tar -zxvf actev-v1-drop4-yaml.tgz
 $ mkdir actev_all_annotations/
 $ find actev-v1-drop4-yaml/ -name "*.yml" | while read line;do mv $line actev_all_annotations/; done
@@ -407,7 +407,7 @@ actev_final/0000.fixed.json --is_actev --video_fps 30 --annotation_fps 2.5 \
 
 Click "[" or "]" to cycle through the annotated trajectories. Click "g" to replay each annotated trajectory. Click "o" to approve all trajectories. Click "x" to set the current selected agent as "x agent" (the agent that will be "embodied" by human annotator).
 See [here](code/moment_editor.py#L139) for full controls. Close the window and a new JSON file is saved to `actev_final/0000.fixed.json`.
-This is how we get the [scenarios before human annotations](https://next.cs.cmu.edu/multiverse/dataset/multiverse_scenarios_v1.tgz).
+This is how we get the [scenarios before human annotations](https://precognition.team/next/multiverse/dataset/multiverse_scenarios_v1.tgz).
 
 ## Change Agent Trajectories
 To manually change all agents trajectories of the forking path dataset, you can do so with the moment editor to get new JSON data files. Specifically, follow [Step 4](#step-4-manually-check-the-filtered-scenarios-and-prepare-for-multi-future-annotations) of the previous section to open the original trajectory control files with `moment_editor.py`, and then edit the trajectories accordingly. A new JSON data file will be saved. Then you can follow [this step](#step-5-now-that-we-have-the-annotations-we-could-record-videos) to record new videos and annotations.

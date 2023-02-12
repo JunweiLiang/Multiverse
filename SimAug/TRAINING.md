@@ -74,7 +74,7 @@ Or you can follow [this instruction](PREPRO.md) to get the train/val.npz for SDD
 
 Then download SimAug-trained model if you have not done so:
 ```
-$ wget https://next.cs.cmu.edu/data/packed_models_eccv2020.tgz
+$ wget https://precognition.team/next/data/packed_models_eccv2020.tgz
 $ tar -zxvf packed_models_eccv2020.tgz
 ```
 

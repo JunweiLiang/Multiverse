@@ -2,7 +2,7 @@
 We experimented on the [ActEv dataset](https://actev.nist.gov) by following the [Next-prediction](https://github.com/google/next-prediction) evaluation protocol.
 First download the processed annotations from the [Next-prediction](https://github.com/google/next-prediction) repo.
 ```
-$ wget https://next.cs.cmu.edu/data/072019_prepare_data/072019_next_my_prepare_nopersoncnn.tgz
+$ wget https://precognition.team/next/data/072019_prepare_data/072019_next_my_prepare_nopersoncnn.tgz
 $ tar -zxvf 072019_next_my_prepare_nopersoncnn.tgz
 ```
 

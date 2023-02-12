@@ -9,7 +9,7 @@ This repository contains the code and models for the following CVPR'20 paper:
 [Ting Yu](https://scholar.google.com/citations?user=_lswGcYAAAAJ&hl=en),
 [Alexander Hauptmann](https://www.cs.cmu.edu/~alex/)
 
-You can find more information at our [Project Page](https://next.cs.cmu.edu/multiverse/) and the [blog](https://medium.com/@junweil/cvpr20-the-garden-of-forking-paths-towards-multi-future-trajectory-prediction-df23221dc9f8).
+You can find more information at our [Project Page](https://precognition.team/next/multiverse/) and the [blog](https://medium.com/@junweil/cvpr20-the-garden-of-forking-paths-towards-multi-future-trajectory-prediction-df23221dc9f8).
 
 The **SimAug** (ECCV'20) project is [here](SimAug/README.md).
 
@@ -51,7 +51,7 @@ This paper studies the problem of predicting the distribution over multiple poss
 
 + Current dataset version: v1
 
-+ Download links: [Google Drive](https://drive.google.com/file/d/1yESCQuIdiDNanUSX0qDyzbBRe_AeZB5a/view?usp=sharing) ([sha256sum](https://next.cs.cmu.edu/multiverse/dataset/ForkingPaths_dataset_v1.sha256sum.txt))
++ Download links: [Google Drive](https://drive.google.com/file/d/1yESCQuIdiDNanUSX0qDyzbBRe_AeZB5a/view?usp=sharing) ([sha256sum](https://precognition.team/next/multiverse/dataset/ForkingPaths_dataset_v1.sha256sum.txt))
 /
 [Baidu Pan](https://pan.baidu.com/s/1nuc726hX8bUBXmMRj6UBJw) (提取码: tpd7)
 
